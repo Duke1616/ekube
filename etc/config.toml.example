@@ -11,13 +11,13 @@ host = "0.0.0.0"
 port = "18081"
 
 [mongodb]
-endpoints = ["10.31.0.200:27017"]
+endpoints = ["127.0.0.1:27017"]
 username = "ekube"
 password = "123456"
 database = "ekube"
 
 [etcd]
-endpoints = ["10.31.0.200:2381"]
+endpoints = ["127.0.0.1:2381"]
 username = "ekube"
 password = "123456"
 
