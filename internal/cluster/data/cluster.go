@@ -2,7 +2,7 @@ package data
 
 import (
 	"context"
-	v1 "ekube/api/cluster"
+	clusterv1 "ekube/api/pb/cluster/v1"
 	"ekube/internal/cluster"
 	"fmt"
 	"github.com/infraboard/mcube/exception"
@@ -11,7 +11,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func (s *Data) Save(ctx context.Context, ins *v1.Cluster) error {
+func (s *Data) Save(ctx context.Context, ins *clusterv1.Cluster) error {
 	if _, err := s.col.InsertOne(ctx, ins); err != nil {
 		return exception.NewInternalServerError("inserted cluster(%s) document error, %s",
 			ins.Spec.Name, err)
@@ -19,7 +19,7 @@ func (s *Data) Save(ctx context.Context, ins *v1.Cluster) error {
 	return nil
 }
 
-func (s *Data) Get(ctx context.Context, id string) (*v1.Cluster, error) {
+func (s *Data) Get(ctx context.Context, id string) (*clusterv1.Cluster, error) {
 	filter := bson.M{"_id": id}
 
 	ins := cluster.NewDefaultCluster()
@@ -34,7 +34,7 @@ func (s *Data) Get(ctx context.Context, id string) (*v1.Cluster, error) {
 	return ins, nil
 }
 
-func (s *Data) Delete(ctx context.Context, ins *v1.Cluster) error {
+func (s *Data) Delete(ctx context.Context, ins *clusterv1.Cluster) error {
 	if ins == nil || ins.Meta.Id == "" {
 		return fmt.Errorf("cluster is nil")
 	}
@@ -51,7 +51,7 @@ func (s *Data) Delete(ctx context.Context, ins *v1.Cluster) error {
 	return nil
 }
 
-func (s *Data) Update(ctx context.Context, ins *v1.Cluster) error {
+func (s *Data) Update(ctx context.Context, ins *clusterv1.Cluster) error {
 	if _, err := s.col.UpdateByID(ctx, ins.Meta.Id, bson.M{"$set": ins}); err != nil {
 		return exception.NewInternalServerError("inserted cluster(%s) document error, %s",
 			ins.Spec.Name, err)
@@ -59,14 +59,14 @@ func (s *Data) Update(ctx context.Context, ins *v1.Cluster) error {
 	return nil
 }
 
-func NewListClusterRequest(r *v1.ListClusterRequest) *listClusterRequest {
+func NewListClusterRequest(r *clusterv1.ListClusterRequest) *listClusterRequest {
 	return &listClusterRequest{
 		r,
 	}
 }
 
 type listClusterRequest struct {
-	*v1.ListClusterRequest
+	*clusterv1.ListClusterRequest
 }
 
 func (r *listClusterRequest) FindOptions() *options.FindOptions {
@@ -102,7 +102,7 @@ func (r *listClusterRequest) FindFilter() bson.M {
 	return filter
 }
 
-func (s *Data) List(ctx context.Context, req *listClusterRequest) (*v1.ClusterSet, error) {
+func (s *Data) List(ctx context.Context, req *listClusterRequest) (*clusterv1.ClusterSet, error) {
 	s.log.Debugf("find filter: %s", req.FindFilter())
 
 	resp, err := s.col.Find(ctx, req.FindFilter(), req.FindOptions())

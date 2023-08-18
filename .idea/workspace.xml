@@ -5,7 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98931868-6569-4e33-b7fa-dc484e09df39" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/etc/config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/etc/config.toml.example" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/k8s/quota/group.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/k8s/quota/v1alpha2/doc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/k8s/quota/v1alpha2/register.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/k8s/quota/v1alpha2/types.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/k8s/quota/v1alpha2/types_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/k8s/quota/v1alpha2/zz_generated.deepcopy.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/k8s/users/v1/groupversion_info.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/k8s/users/v1/users_types.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/k8s/users/v1/zz_generated.deepcopy.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hack/boilerplate.go.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hack/generate_group.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hack/generate_manifests.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tools/tools.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/cluster/cluster.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/cluster/v1/cluster.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/cluster/cluster.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/cluster/v1/cluster.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/cluster/cluster.proto" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/cluster/v1/cluster.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/cluster/encrypt.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/cluster/v1/encrypt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/cluster/rpc.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/cluster/v1/rpc.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/cluster/rpc.proto" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/cluster/v1/rpc.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/cluster/rpc_grpc.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/cluster/v1/rpc_grpc.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/cluster/validate.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/cluster/v1/validate.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/start/option/option.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/start/option/option.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hack/generate_client.sh" beforeDir="false" afterPath="$PROJECT_DIR$/hack/generate_client.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/cluster/api/http.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/cluster/api/http.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/cluster/cluster.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/cluster/cluster.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/cluster/data/cluster.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/cluster/data/cluster.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/cluster/impl/cluster.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/cluster/impl/cluster.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/cluster/impl/impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/cluster/impl/impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/cluster/interface.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/cluster/interface.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/proxy/api/pod.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/proxy/api/pod.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/makefile" beforeDir="false" afterPath="$PROJECT_DIR$/makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/apiserver/apiserver.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/apiserver/apiserver.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/client/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/k8s/client/client.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +93,7 @@
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "RunOnceActivity.go.vendoring.notification.had.been.shown": "true",
     "RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed": "true",
     "ToolWindow运行.ShowToolbar": "false",
     "WebServerToolWindowFactoryState": "false",
@@ -65,7 +101,7 @@
     "configurable.GoLibrariesConfigurable.is.expanded": "true",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "/Users/draken/Desktop/golang/ekube/etc",
+    "last_opened_file_path": "/Users/draken/Desktop/golang/ekube/api/k8s/user/v1",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -76,18 +112,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/etc" />
+      <recent name="$PROJECT_DIR$/api/k8s/user/v1" />
+      <recent name="$PROJECT_DIR$/pkg/controller" />
+      <recent name="$PROJECT_DIR$/api/pb/cluster/v1/validate" />
+      <recent name="$PROJECT_DIR$/api/pb/cluster/validate" />
       <recent name="$PROJECT_DIR$/hack" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/resource" />
-      <recent name="$PROJECT_DIR$/protocol" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/pkg/client" />
-      <recent name="$PROJECT_DIR$/pkg" />
-      <recent name="$PROJECT_DIR$/cmd/start/option" />
-      <recent name="$PROJECT_DIR$/conf" />
-      <recent name="$PROJECT_DIR$/protocol" />
+      <recent name="$PROJECT_DIR$/api/pb/cluster/v1" />
+      <recent name="$PROJECT_DIR$/api/pb/cluster" />
+      <recent name="$PROJECT_DIR$/cmd" />
+      <recent name="$PROJECT_DIR$/api/k8s" />
+      <recent name="$PROJECT_DIR$/api/pb" />
     </key>
   </component>
   <component name="RunManager" selected="Go 构建.go build ekube">
@@ -137,6 +173,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go 测试.ekube/resource 中的 TestTransByte" />
+        <item itemvalue="Go 测试.ekube/internal/cluster/impl 中的 TestCreateCluster" />
+        <item itemvalue="Go 构建.go build mkube" />
         <item itemvalue="Go 构建.go build ekube" />
       </list>
     </recent_temporary>
@@ -144,6 +183,17 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

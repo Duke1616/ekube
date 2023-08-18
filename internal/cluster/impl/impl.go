@@ -1,7 +1,7 @@
 package impl
 
 import (
-	v1 "ekube/api/cluster"
+	v1 "ekube/api/pb/cluster/v1"
 	"ekube/conf"
 	"ekube/internal/cluster"
 	"ekube/internal/cluster/data"

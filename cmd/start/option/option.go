@@ -3,8 +3,8 @@ package option
 import (
 	"ekube/conf"
 	"ekube/pkg/apiserver"
-	"ekube/pkg/client"
 	"ekube/pkg/informer"
+	"ekube/pkg/k8s/client"
 	"k8s.io/client-go/util/homedir"
 	"os"
 	"os/user"

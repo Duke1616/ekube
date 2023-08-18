@@ -1,7 +1,7 @@
 package api
 
 import (
-	v1 "ekube/api/cluster"
+	v1 "ekube/api/pb/cluster/v1"
 	"ekube/internal/cluster"
 	"ekube/protocol/ioc"
 	"github.com/infraboard/mcube/http/label"

@@ -2,7 +2,7 @@ package cluster
 
 import (
 	"context"
-	v1 "ekube/api/cluster"
+	clusterv1 "ekube/api/pb/cluster/v1"
 )
 
 const (
@@ -14,8 +14,8 @@ type Service interface {
 }
 
 type ClusterService interface {
-	v1.RPCServer
-	CreateCluster(context.Context, *v1.CreateClusterRequest) (*v1.Cluster, error)
-	UpdateCluster(context.Context, *v1.UpdateClusterRequest) (*v1.Cluster, error)
-	DeleteCluster(context.Context, *v1.DeleteClusterRequest) (*v1.Cluster, error)
+	clusterv1.RPCServer
+	CreateCluster(context.Context, *clusterv1.CreateClusterRequest) (*clusterv1.Cluster, error)
+	UpdateCluster(context.Context, *clusterv1.UpdateClusterRequest) (*clusterv1.Cluster, error)
+	DeleteCluster(context.Context, *clusterv1.DeleteClusterRequest) (*clusterv1.Cluster, error)
 }

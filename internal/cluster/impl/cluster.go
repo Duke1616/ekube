@@ -2,7 +2,7 @@ package impl
 
 import (
 	"context"
-	v1 "ekube/api/cluster"
+	clusterv1 "ekube/api/pb/cluster/v1"
 	"ekube/internal/cluster"
 	"ekube/internal/cluster/data"
 	"github.com/infraboard/mcube/exception"
@@ -10,8 +10,8 @@ import (
 )
 
 // CreateCluster 集群录入
-func (s *service) CreateCluster(ctx context.Context, req *v1.CreateClusterRequest) (
-	*v1.Cluster, error) {
+func (s *service) CreateCluster(ctx context.Context, req *clusterv1.CreateClusterRequest) (
+	*clusterv1.Cluster, error) {
 	ins, err := cluster.NewCluster(req)
 	if err != nil {
 		return nil, exception.NewBadRequest("validate create cluster error, %s", err)
@@ -36,7 +36,7 @@ func (s *service) CreateCluster(ctx context.Context, req *v1.CreateClusterReques
 	return ins, err
 }
 
-func (s *service) checkStatus(ins *v1.Cluster) {
+func (s *service) checkStatus(ins *clusterv1.Cluster) {
 	//client, err := resource.NewClient(ins.Spec.KubeConfig)
 	//if err != nil {
 	//	ins.Status.Message = err.Error()
@@ -65,8 +65,8 @@ func (s *service) checkStatus(ins *v1.Cluster) {
 }
 
 // ListCluster 查询集群列表
-func (s *service) ListCluster(ctx context.Context, req *v1.ListClusterRequest) (
-	*v1.ClusterSet, error) {
+func (s *service) ListCluster(ctx context.Context, req *clusterv1.ListClusterRequest) (
+	*clusterv1.ClusterSet, error) {
 	query := data.NewListClusterRequest(req)
 	set, err := s.data.List(ctx, query)
 	if err != nil {
@@ -76,8 +76,8 @@ func (s *service) ListCluster(ctx context.Context, req *v1.ListClusterRequest) (
 }
 
 // DescribeCluster 查询集群详情
-func (s *service) DescribeCluster(ctx context.Context, req *v1.DescribeClusterRequest) (
-	*v1.Cluster, error) {
+func (s *service) DescribeCluster(ctx context.Context, req *clusterv1.DescribeClusterRequest) (
+	*clusterv1.Cluster, error) {
 	ins, err := s.data.Get(ctx, req.Id)
 	if err != nil {
 		return nil, err
@@ -89,8 +89,8 @@ func (s *service) DescribeCluster(ctx context.Context, req *v1.DescribeClusterRe
 }
 
 // UpdateCluster 集群更新
-func (s *service) UpdateCluster(ctx context.Context, req *v1.UpdateClusterRequest) (
-	*v1.Cluster, error) {
+func (s *service) UpdateCluster(ctx context.Context, req *clusterv1.UpdateClusterRequest) (
+	*clusterv1.Cluster, error) {
 	ins, err := s.DescribeCluster(ctx, cluster.NewDescribeClusterRequest(req.Id))
 	if err != nil {
 		return nil, err
@@ -133,8 +133,8 @@ func (s *service) UpdateCluster(ctx context.Context, req *v1.UpdateClusterReques
 }
 
 // DeleteCluster 集群的删除
-func (s *service) DeleteCluster(ctx context.Context, req *v1.DeleteClusterRequest) (
-	*v1.Cluster, error) {
+func (s *service) DeleteCluster(ctx context.Context, req *clusterv1.DeleteClusterRequest) (
+	*clusterv1.Cluster, error) {
 
 	ins, err := s.DescribeCluster(ctx, cluster.NewDescribeClusterRequest(req.Id))
 	if err != nil {

@@ -1,7 +1,7 @@
 package api
 
 import (
-	v1 "ekube/api/cluster"
+	v1 "ekube/api/pb/cluster/v1"
 	"ekube/pkg/apiserver/query"
 	restfulspec "github.com/emicklei/go-restful-openapi/v2"
 	"github.com/emicklei/go-restful/v3"
