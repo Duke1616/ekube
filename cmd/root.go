@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"ekube/cmd/controller"
+	option1 "ekube/cmd/controller/option"
 	"ekube/cmd/start"
 	"ekube/cmd/start/option"
 	"ekube/conf"
@@ -119,8 +121,12 @@ func Execute() {
 	// 补充初始化设置
 	cobra.OnInitialize(initail)
 	s := option.NewServerRunOptions()
-	cmd := start.NewAPIServerCommand(s)
-	RootCmd.AddCommand(cmd)
+	r := option1.NewKubeSphereControllerManagerOptions()
+
+	apiServerCmd := start.NewAPIServerCommand(s)
+	controllerCmd := controller.NewControllerCommand(r)
+	RootCmd.AddCommand(apiServerCmd)
+	RootCmd.AddCommand(controllerCmd)
 	//RootCmd.AddCommand(initial.Cmd)
 
 	err := RootCmd.Execute()

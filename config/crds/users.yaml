@@ -1,0 +1,10 @@
+apiVersion: webapp.github.com/v1
+kind: Users
+metadata:
+  labels:
+    app.kubernetes.io/name: users
+    app.kubernetes.io/instance: users-sample
+    app.kubernetes.io/part-of: project
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: project
+  name: users-sample

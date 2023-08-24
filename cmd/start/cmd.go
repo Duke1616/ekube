@@ -2,8 +2,8 @@ package start
 
 import (
 	"context"
+	"ekube/cmd/signals"
 	"ekube/cmd/start/option"
-	"ekube/cmd/start/signals"
 	"ekube/conf"
 	// 注册所有服务
 	_ "ekube/internal/all"
