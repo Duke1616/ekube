@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+ selector:                                    #定义标签选择器
+  matchLabels:                                #定义匹配的标签，必须要设置
+   app: nginx                                 #匹配的目标标签     
+ replicas: 1                                  #开启Pod的数量
+ template:                                    #定义模板，必须定义，模板是起到描述要创建的pod的作用
+  metadata:                                   #定义模板元数据
+    labels:                                   #定义模板label，Deployment.spec.template.metadata.labels   
+     app : nginx                              #定义标签，必须等于 matchLabels 定义的标签
+  spec:                                     
+   containers:
+   - image: nginx:1.18.0
+     name: nginx                                 #镜像名称
+     ports:
+     - containerPort: 80     

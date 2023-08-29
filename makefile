@@ -50,9 +50,14 @@ pb:
 	@sudo rm -rf third_party/mcube/pb/*/*.go
 
 .PHONY: run
-# run server
+# run apiServer
 run:
 	@go run main.go start
+
+.PHONY: controller
+# run controller
+controller:
+	@go run main.go controller
 
 .PHONY: inject
 # generate inject proto

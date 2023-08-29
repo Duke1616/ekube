@@ -2,6 +2,7 @@ package conf
 
 import (
 	"context"
+	"ekube/pkg/terminal"
 	"fmt"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
@@ -145,13 +146,14 @@ func (c *config) loadFromDisk() (*Config, error) {
 
 // Config 应用配置
 type Config struct {
-	App        *app        `toml:"app" mapstructure:"app"`
-	Log        *log        `toml:"log" mapstructure:"log"`
-	Etcd       *etcd       `toml:"etcd" mapstructure:"etcd"`
-	Mongo      *mongodb    `toml:"mongodb" mapstructure:"mongodb"`
-	Cache      *_cache     `toml:"cache" mapstructure:"cache"`
-	Image      *image      `toml:"image" mapstructure:"image"`
-	Kubernetes *Kubernetes `toml:"KubernetesOption" mapstructure:"KubernetesOption"`
+	App            *app             `toml:"app" mapstructure:"app"`
+	Log            *log             `toml:"log" mapstructure:"log"`
+	Etcd           *etcd            `toml:"etcd" mapstructure:"etcd"`
+	Mongo          *mongodb         `toml:"mongodb" mapstructure:"mongodb"`
+	Cache          *_cache          `toml:"cache" mapstructure:"cache"`
+	Image          *image           `toml:"image" mapstructure:"image"`
+	Kubernetes     *Kubernetes      `toml:"Kubernetes" mapstructure:"Kubernetes"`
+	TerminalOption *terminal.Option `toml:"terminal" mapstructure:"terminal"`
 }
 
 type app struct {

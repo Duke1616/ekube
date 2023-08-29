@@ -3,7 +3,8 @@ package apiserver
 import (
 	"context"
 	"ekube/conf"
-	"ekube/internal/proxy/api"
+	proxyAPI "ekube/internal/proxy/api"
+	terminalAPI "ekube/internal/terminal/api"
 	"ekube/pkg/informer"
 	"ekube/pkg/k8s/client"
 	"ekube/protocol"
@@ -66,7 +67,8 @@ func (s *APIServer) newService() *APIServer {
 func (s *APIServer) PrepareRun(stopCh <-chan struct{}) {
 	s.newService()
 
-	urlruntime.Must(api.Handler.AddToContainer(s.InformerFactory))
+	urlruntime.Must(proxyAPI.Handler.AddToContainer(s.InformerFactory))
+	urlruntime.Must(terminalAPI.Handler.AddToContainer(s.KubernetesClient.Kubernetes(), s.KubernetesClient.Config(), conf.C().TerminalOption))
 	gvrs := []schema.GroupVersionResource{
 		{Group: "", Version: "v1", Resource: "pods"},
 	}
