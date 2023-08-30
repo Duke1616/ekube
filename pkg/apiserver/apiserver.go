@@ -2,7 +2,7 @@ package apiserver
 
 import (
 	"context"
-	"ekube/conf"
+	"ekube/config"
 	proxyAPI "ekube/internal/proxy/api"
 	terminalAPI "ekube/internal/terminal/api"
 	"ekube/pkg/informer"
@@ -26,7 +26,7 @@ type APIServer struct {
 
 	Server *http.Server
 
-	Config *conf.Kubernetes
+	Config *config.Kubernetes
 
 	http *protocol.HTTPService
 
@@ -42,7 +42,7 @@ type APIServer struct {
 func (s *APIServer) newService() *APIServer {
 	httpServer := protocol.NewHTTPService()
 
-	etcdClient, err := conf.C().Etcd.Client()
+	etcdClient, err := config.C().Etcd.Client()
 	if err != nil {
 		panic(err)
 	}
@@ -68,7 +68,7 @@ func (s *APIServer) PrepareRun(stopCh <-chan struct{}) {
 	s.newService()
 
 	urlruntime.Must(proxyAPI.Handler.AddToContainer(s.InformerFactory))
-	urlruntime.Must(terminalAPI.Handler.AddToContainer(s.KubernetesClient.Kubernetes(), s.KubernetesClient.Config(), conf.C().TerminalOption))
+	urlruntime.Must(terminalAPI.Handler.AddToContainer(s.KubernetesClient.Kubernetes(), s.KubernetesClient.Config(), config.C().TerminalOption))
 	gvrs := []schema.GroupVersionResource{
 		{Group: "", Version: "v1", Resource: "pods"},
 	}
@@ -117,7 +117,7 @@ func (s *APIServer) waitSign(sign chan os.Signal) {
 			}
 
 			// 关闭依赖的全景配置对象
-			conf.C().Shutdown(context.Background())
+			config.C().Shutdown(context.Background())
 		}
 	}
 }

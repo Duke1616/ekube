@@ -1,7 +1,7 @@
 package v1
 
 import (
-	"ekube/conf"
+	"ekube/config"
 	"encoding/base64"
 	"fmt"
 	"github.com/infraboard/mcube/crypto/cbc"
@@ -10,7 +10,7 @@ import (
 
 func (x *Cluster) EncryptKubeConf(key string) error {
 	// 判断文本是否已经加密
-	if strings.HasPrefix(x.Spec.KubeConfig, conf.CIPHER_TEXT_PREFIX) {
+	if strings.HasPrefix(x.Spec.KubeConfig, config.CIPHER_TEXT_PREFIX) {
 		return fmt.Errorf("text has ciphered")
 	}
 
@@ -20,17 +20,17 @@ func (x *Cluster) EncryptKubeConf(key string) error {
 	}
 
 	base64Str := base64.StdEncoding.EncodeToString(cipherText)
-	x.Spec.KubeConfig = fmt.Sprintf("%s%s", conf.CIPHER_TEXT_PREFIX, base64Str)
+	x.Spec.KubeConfig = fmt.Sprintf("%s%s", config.CIPHER_TEXT_PREFIX, base64Str)
 	return nil
 }
 
 func (x *Cluster) DecryptKubeConf(key string) error {
 	// 判断文本是否已经是明文
-	if !strings.HasPrefix(x.Spec.KubeConfig, conf.CIPHER_TEXT_PREFIX) {
+	if !strings.HasPrefix(x.Spec.KubeConfig, config.CIPHER_TEXT_PREFIX) {
 		return nil
 	}
 
-	base64CipherText := strings.TrimPrefix(x.Spec.KubeConfig, conf.CIPHER_TEXT_PREFIX)
+	base64CipherText := strings.TrimPrefix(x.Spec.KubeConfig, config.CIPHER_TEXT_PREFIX)
 
 	cipherText, err := base64.StdEncoding.DecodeString(base64CipherText)
 	if err != nil {

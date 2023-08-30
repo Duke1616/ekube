@@ -1,7 +1,7 @@
 package option
 
 import (
-	"ekube/conf"
+	"ekube/config"
 	"ekube/pkg/apiserver"
 	"ekube/pkg/informer"
 	"ekube/pkg/k8s/client"
@@ -34,8 +34,8 @@ func (s *ServerRunOptions) NewAPIServer() (*apiserver.APIServer, error) {
 type ServerRunOptions struct {
 	ConfigFile       string
 	schemeOnce       sync.Once
-	KubernetesOption *conf.Kubernetes
-	*conf.Config
+	KubernetesOption *config.Kubernetes
+	*config.Config
 	DebugMode bool
 }
 
@@ -48,8 +48,8 @@ func NewServerRunOptions() *ServerRunOptions {
 	return s
 }
 
-func NewKubernetesOptions() (option *conf.Kubernetes) {
-	option = &conf.Kubernetes{
+func NewKubernetesOptions() (option *config.Kubernetes) {
+	option = &config.Kubernetes{
 		QPS:   1e6,
 		Burst: 1e6,
 	}

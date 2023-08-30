@@ -2,7 +2,7 @@ package impl_test
 
 import (
 	"context"
-	"ekube/conf"
+	"ekube/config"
 	"ekube/internal/cluster"
 	"ekube/protocol/ioc"
 	"github.com/emicklei/go-restful/v3"
@@ -29,7 +29,7 @@ func DevelopmentSetup() {
 	restful.DefaultRequestContentType(restful.MIME_JSON)
 
 	// 初始化配置, 提前配置好/etc/unit_test.env
-	err := conf.LoadConfigFromToml("../../../etc/config.toml")
+	err := config.LoadConfigFromToml("../../../etc/config.toml")
 	if err != nil {
 		panic(err)
 	}

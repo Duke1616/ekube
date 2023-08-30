@@ -2,7 +2,7 @@ package protocol
 
 import (
 	"context"
-	"ekube/conf"
+	"ekube/config"
 	"ekube/protocol/ioc"
 	"ekube/swagger"
 	restfulspec "github.com/emicklei/go-restful-openapi/v2"
@@ -43,7 +43,7 @@ func NewHTTPService() *HTTPService {
 		WriteTimeout:      60 * time.Second,
 		IdleTimeout:       60 * time.Second,
 		MaxHeaderBytes:    1 << 20, // 1M
-		Addr:              conf.C().App.HTTP.Addr(),
+		Addr:              config.C().App.HTTP.Addr(),
 		Handler:           r,
 	}
 
@@ -51,7 +51,7 @@ func NewHTTPService() *HTTPService {
 		r:      r,
 		server: server,
 		l:      zap.L().Named("server.http"),
-		c:      conf.C(),
+		c:      config.C(),
 		//endpoint:   c.Endpoint(),
 		apiDocPath: "/apidocs.json",
 	}
@@ -61,7 +61,7 @@ func NewHTTPService() *HTTPService {
 type HTTPService struct {
 	r      *restful.Container
 	l      logger.Logger
-	c      *conf.Config
+	c      *config.Config
 	server *http.Server
 
 	//endpoint   endpoint.RPCClient

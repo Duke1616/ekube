@@ -2,7 +2,7 @@ package impl
 
 import (
 	v1 "ekube/api/pb/cluster/v1"
-	"ekube/conf"
+	"ekube/config"
 	"ekube/internal/cluster"
 	"ekube/internal/cluster/data"
 	"ekube/protocol/ioc"
@@ -27,12 +27,12 @@ type service struct {
 }
 
 func (s *service) Config() error {
-	db, err := conf.C().Mongo.GetDB()
+	db, err := config.C().Mongo.GetDB()
 	if err != nil {
 		return err
 	}
 
-	s.encryptKey = conf.C().App.EncryptKey
+	s.encryptKey = config.C().App.EncryptKey
 
 	s.data = data.NewData(db, s.Name())
 

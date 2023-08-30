@@ -1,7 +1,7 @@
 package ioc
 
 import (
-	"ekube/conf"
+	"ekube/config"
 	"ekube/registry"
 	"github.com/infraboard/mcube/logger"
 	"github.com/infraboard/mcube/logger/zap"
@@ -16,7 +16,7 @@ type GRPCService struct {
 	Name string
 	*grpc.Server
 	l logger.Logger
-	c *conf.Config
+	c *config.Config
 
 	registry        registry.Registry
 	registryTimeout time.Duration
@@ -30,7 +30,7 @@ func NewGRPCService(name string, opts ...ServerOption) (*GRPCService, error) {
 		Name:            name,
 		Server:          grpc.NewServer(),
 		l:               zap.L().Named("server.grpc"),
-		c:               conf.C(),
+		c:               config.C(),
 		registryTimeout: time.Second * 10,
 	}
 

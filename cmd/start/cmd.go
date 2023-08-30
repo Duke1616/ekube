@@ -4,7 +4,7 @@ import (
 	"context"
 	"ekube/cmd/signals"
 	"ekube/cmd/start/option"
-	"ekube/conf"
+	"ekube/config"
 	// 注册所有服务
 	_ "ekube/internal/all"
 	"github.com/spf13/cobra"
@@ -20,7 +20,7 @@ func NewAPIServerCommand(s *option.ServerRunOptions) *cobra.Command {
 				return nil
 			}
 
-			return Run(s, conf.WatchConfigChange(), signals.SetupSignalHandler())
+			return Run(s, config.WatchConfigChange(), signals.SetupSignalHandler())
 		},
 		SilenceUsage: true,
 	}
@@ -28,7 +28,7 @@ func NewAPIServerCommand(s *option.ServerRunOptions) *cobra.Command {
 	return Cmd
 }
 
-func Run(s *option.ServerRunOptions, configCh <-chan conf.Config, ctx context.Context) error {
+func Run(s *option.ServerRunOptions, configCh <-chan config.Config, ctx context.Context) error {
 	ictx, cancelFunc := context.WithCancel(context.TODO())
 	errCh := make(chan error)
 	defer close(errCh)

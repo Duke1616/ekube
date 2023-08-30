@@ -1,7 +1,7 @@
 package option
 
 import (
-	"ekube/conf"
+	"ekube/config"
 	"fmt"
 	"k8s.io/client-go/tools/leaderelection"
 	"k8s.io/client-go/util/homedir"
@@ -12,7 +12,7 @@ import (
 )
 
 type KubeSphereControllerManagerOptions struct {
-	KubernetesOption *conf.Kubernetes
+	KubernetesOption *config.Kubernetes
 
 	LeaderElect    bool
 	LeaderElection *leaderelection.LeaderElectionConfig
@@ -58,8 +58,8 @@ func NewKubeSphereControllerManagerOptions() *KubeSphereControllerManagerOptions
 	return s
 }
 
-func NewKubernetesOptions() (option *conf.Kubernetes) {
-	option = &conf.Kubernetes{
+func NewKubernetesOptions() (option *config.Kubernetes) {
+	option = &config.Kubernetes{
 		QPS:   1e6,
 		Burst: 1e6,
 	}
@@ -99,7 +99,7 @@ func (s *KubeSphereControllerManagerOptions) IsControllerEnabled(name string) bo
 
 // MergeConfig merge new config without validation
 // When misconfigured, the app should just crash directly
-func (s *KubeSphereControllerManagerOptions) MergeConfig(cfg *conf.Config) {
+func (s *KubeSphereControllerManagerOptions) MergeConfig(cfg *config.Config) {
 	fmt.Print(cfg.Kubernetes)
 	s.KubernetesOption = NewKubernetesOptions()
 }

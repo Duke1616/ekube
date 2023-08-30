@@ -46,8 +46,6 @@ func NewTerminal(client kubernetes.Interface, config *rest.Config, option *Optio
 }
 
 func (t *Terminal) Exec(cmd []string, namespace, pod, container string, handler ttyHandler) error {
-	//pods, _ := t.client.CoreV1().Pods(namespace).List(context.Background(), metav1.ListOptions{})
-	//fmt.Print(pods)
 	req := t.client.CoreV1().RESTClient().Post().
 		Resource("pods").
 		Namespace(namespace).

@@ -4,7 +4,7 @@ import (
 	"context"
 	"ekube/cmd/controller/option"
 	"ekube/cmd/signals"
-	"ekube/conf"
+	"ekube/config"
 	"ekube/pkg/apis"
 	"ekube/pkg/informer"
 	"ekube/pkg/k8s/client"
@@ -25,7 +25,7 @@ func NewControllerCommand(s *option.KubeSphereControllerManagerOptions) *cobra.C
 			//	return nil
 			//}
 
-			return Run(s, conf.WatchConfigChange(), signals.SetupSignalHandler())
+			return Run(s, config.WatchConfigChange(), signals.SetupSignalHandler())
 		},
 		SilenceUsage: true,
 	}
@@ -33,7 +33,7 @@ func NewControllerCommand(s *option.KubeSphereControllerManagerOptions) *cobra.C
 	return Cmd
 }
 
-func Run(s *option.KubeSphereControllerManagerOptions, configCh <-chan conf.Config, ctx context.Context) error {
+func Run(s *option.KubeSphereControllerManagerOptions, configCh <-chan config.Config, ctx context.Context) error {
 	ictx, cancelFunc := context.WithCancel(context.TODO())
 	errCh := make(chan error)
 	defer close(errCh)

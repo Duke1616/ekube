@@ -71,15 +71,17 @@ client:  ;$(info $(M)...Begin to find or download controller-gen.)  @
 	./hack/generate_client.sh ${GV}
 
 .PHONY: manifests
-## Generate manifests e.g. CRD, RBAC etc.
+# Generate manifests e.g. CRD, RBAC etc.
 manifests: ;$(info $(M)...Begin to generate manifests e.g. CRD, RBAC etc..)  @
-	hack/generate_manifests.sh ${CRD_OPTIONS} ${MANIFESTS}
+	./hack/generate_manifests.sh ${CRD_OPTIONS} ${MANIFESTS}
 
 .PHONY: all
 # generate all proto
 all:
 	make api;
 	make inject;
+	make client;
+	make manifests;
 
 help:
 	@echo ''

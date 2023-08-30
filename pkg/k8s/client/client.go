@@ -1,7 +1,7 @@
 package client
 
 import (
-	"ekube/conf"
+	"ekube/config"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
@@ -18,7 +18,7 @@ type kubernetesClient struct {
 	config *rest.Config
 }
 
-func NewKubernetesClient(option *conf.Kubernetes) (Client, error) {
+func NewKubernetesClient(option *config.Kubernetes) (Client, error) {
 	config, err := clientcmd.BuildConfigFromFlags("", option.KubeConfig)
 	if err != nil {
 		return nil, err

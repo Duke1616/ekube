@@ -2,7 +2,7 @@ package protocol
 
 import (
 	"context"
-	"ekube/conf"
+	"ekube/config"
 	"ekube/protocol/ioc"
 	"ekube/registry"
 	"google.golang.org/grpc"
@@ -20,7 +20,7 @@ type GRPCService struct {
 	Name string
 	*grpc.Server
 	l logger.Logger
-	c *conf.Config
+	c *config.Config
 
 	registry        registry.Registry
 	registryTimeout time.Duration
@@ -34,7 +34,7 @@ func NewGRPCService(name string, opts ...ServerOption) (*GRPCService, error) {
 		Name:            name,
 		Server:          grpc.NewServer(),
 		l:               zap.L().Named("server.grpc"),
-		c:               conf.C(),
+		c:               config.C(),
 		registryTimeout: time.Second * 10,
 	}
 
@@ -60,7 +60,7 @@ func (s *GRPCService) Start(ctx context.Context) {
 
 	ioc.LoadGrpcApp(s.Server)
 
-	listener, err := net.Listen("tcp", conf.C().App.GRPC.Addr())
+	listener, err := net.Listen("tcp", config.C().App.GRPC.Addr())
 	if err != nil {
 		return
 	}

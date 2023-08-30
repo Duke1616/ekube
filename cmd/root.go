@@ -5,7 +5,7 @@ import (
 	option1 "ekube/cmd/controller/option"
 	"ekube/cmd/start"
 	"ekube/cmd/start/option"
-	"ekube/conf"
+	"ekube/config"
 	"ekube/protocol/ioc"
 	"ekube/version"
 	"errors"
@@ -45,12 +45,12 @@ func loadGlobalConfig(configType string) error {
 	// 配置加载
 	switch configType {
 	case "file":
-		err := conf.LoadConfigFromToml()
+		err := config.LoadConfigFromToml()
 		if err != nil {
 			return err
 		}
 	case "env":
-		err := conf.LoadConfigFromEnv()
+		err := config.LoadConfigFromEnv()
 		if err != nil {
 			return err
 		}
@@ -67,7 +67,7 @@ func loadGlobalLogger() error {
 		logInitMsg string
 		level      zap.Level
 	)
-	lc := conf.C().Log
+	lc := config.C().Log
 	lv, err := zap.NewLevel(lc.Level)
 	if err != nil {
 		logInitMsg = fmt.Sprintf("%s, use default level INFO", err)
@@ -79,15 +79,15 @@ func loadGlobalLogger() error {
 	zapConfig := zap.DefaultConfig()
 	zapConfig.Level = level
 	switch lc.To {
-	case conf.ToStdout:
+	case config.ToStdout:
 		zapConfig.ToStderr = true
 		zapConfig.ToFiles = false
-	case conf.ToFile:
+	case config.ToFile:
 		zapConfig.Files.Name = "api.log"
 		zapConfig.Files.Path = lc.PathDir
 	}
 	switch lc.Format {
-	case conf.JSONFormat:
+	case config.JSONFormat:
 		zapConfig.JSON = true
 	}
 	if err := zap.Configure(zapConfig); err != nil {
