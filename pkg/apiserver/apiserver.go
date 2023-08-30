@@ -67,7 +67,7 @@ func (s *APIServer) newService() *APIServer {
 func (s *APIServer) PrepareRun(stopCh <-chan struct{}) {
 	s.newService()
 
-	urlruntime.Must(proxyAPI.Handler.AddToContainer(s.InformerFactory))
+	urlruntime.Must(proxyAPI.Handler.AddToContainer(s.InformerFactory, s.KubernetesClient.Kubernetes()))
 	urlruntime.Must(terminalAPI.Handler.AddToContainer(s.KubernetesClient.Kubernetes(), s.KubernetesClient.Config(), config.C().TerminalOption))
 	gvrs := []schema.GroupVersionResource{
 		{Group: "", Version: "v1", Resource: "pods"},

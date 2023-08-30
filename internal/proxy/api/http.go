@@ -6,11 +6,12 @@ import (
 	"ekube/pkg/informer"
 	"ekube/pkg/k8s/resource"
 	"ekube/protocol/ioc"
-	"fmt"
+	"ekube/tools"
 	"github.com/emicklei/go-restful/v3"
-	"github.com/infraboard/mcube/http/restful/response"
 	"github.com/infraboard/mcube/logger"
 	"github.com/infraboard/mcube/logger/zap"
+	"k8s.io/client-go/kubernetes"
+	"k8s.io/client-go/kubernetes/scheme"
 )
 
 var (
@@ -21,11 +22,13 @@ type handler struct {
 	service         cluster.ClusterService
 	log             logger.Logger
 	informerFactory informer.InformerFactory
+	kubernetes      kubernetes.Interface
 	resourceGetter  *resource.ResourceGetter
 }
 
-func (h *handler) AddToContainer(informerFactory informer.InformerFactory) error {
+func (h *handler) AddToContainer(informerFactory informer.InformerFactory, kubernetes kubernetes.Interface) error {
 	h.informerFactory = informerFactory
+	h.kubernetes = kubernetes
 	h.resourceGetter = resource.NewResourceGetter(h.informerFactory)
 	return nil
 }
@@ -50,6 +53,9 @@ func (h *handler) Registry(ws *restful.WebService) {
 }
 
 func init() {
+	// refer to https://github.com/kubernetes/kubernetes/issues/94688
+	tools.RegisterConversions(scheme.Scheme)
+
 	ioc.RegistryRestfulApp(Handler)
 }
 
@@ -59,11 +65,11 @@ func (h *handler) ClusterMiddleware(
 	next *restful.FilterChain) {
 
 	// 处理请求
-	clusterId := req.PathParameter("cluster_id")
-	if clusterId == "" {
-		response.Failed(resp, fmt.Errorf("url path param cluster_id required"))
-		return
-	}
+	//clusterId := req.PathParameter("cluster_id")
+	//if clusterId == "" {
+	//	response.Failed(resp, fmt.Errorf("url path param cluster_id required"))
+	//	return
+	//}
 
 	// 获取集群client对象
 	//descReq := cluster.NewDescribeClusterRequest(clusterId)

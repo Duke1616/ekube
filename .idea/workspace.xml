@@ -5,28 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98931868-6569-4e33-b7fa-dc484e09df39" name="变更" comment="">
+      <change afterPath="$PROJECT_DIR$/tools/conversions.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/pb/cluster/v1/encrypt.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/cluster/v1/encrypt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/controller/cmd.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/controller/cmd.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/controller/option/option.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/controller/option/option.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/root.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/root.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/start/cmd.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/start/cmd.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/start/option/option.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/start/option/option.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/load.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/load.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/log.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/log.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/crds/quota.kubesphere.io_resourcequotas.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/crds/webapp.github.com_users.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hack/generate_manifests.sh" beforeDir="false" afterPath="$PROJECT_DIR$/hack/generate_manifests.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/cluster/impl/impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/cluster/impl/impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/cluster/impl/impl_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/cluster/impl/impl_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/makefile" beforeDir="false" afterPath="$PROJECT_DIR$/makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/proxy/api/http.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/proxy/api/http.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/proxy/api/pod.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/proxy/api/pod.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/terminal/api/http.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/terminal/api/http.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/terminal/api/terminal.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/terminal/api/terminal.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/apiserver/apiserver.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/apiserver/apiserver.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/k8s/client/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/k8s/client/client.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/terminal/exec.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/terminal/exec.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protocol/grpc.go" beforeDir="false" afterPath="$PROJECT_DIR$/protocol/grpc.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protocol/http.go" beforeDir="false" afterPath="$PROJECT_DIR$/protocol/http.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protocol/ioc/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/protocol/ioc/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/terminal/exec.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/k8s/terminal/exec.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/terminal/exec_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/k8s/terminal/exec_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/terminal/option.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/k8s/terminal/option.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/terminal/shell.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/k8s/terminal/shell.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/terminal/types.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/k8s/terminal/types.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/modules.txt" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/modules.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,32 +64,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.format.on.save.advertiser.fired&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.vendoring.notification.had.been.shown&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed&quot;: &quot;true&quot;,
-    &quot;ToolWindow运行.ShowToolbar&quot;: &quot;false&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;configurable..is.expanded&quot;: &quot;false&quot;,
-    &quot;configurable.GoLibrariesConfigurable.is.expanded&quot;: &quot;true&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/draken/Desktop/golang/ekube/pkg/apis&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.goide.configuration.GoProjectSettingsConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.format.on.save.advertiser.fired": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "RunOnceActivity.go.vendoring.notification.had.been.shown": "true",
+    "RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed": "true",
+    "ToolWindow运行.ShowToolbar": "false",
+    "WebServerToolWindowFactoryState": "false",
+    "configurable..is.expanded": "false",
+    "configurable.GoLibrariesConfigurable.is.expanded": "true",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "/Users/draken/Desktop/golang/ekube/pkg/apis",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.goide.configuration.GoProjectSettingsConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/pkg/apis" />
@@ -105,11 +100,11 @@
       <recent name="$PROJECT_DIR$/api/pb/cluster/validate" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pkg/k8s" />
       <recent name="$PROJECT_DIR$/conf/crds" />
       <recent name="$PROJECT_DIR$/cmd" />
       <recent name="$PROJECT_DIR$/api/pb/cluster/v1" />
       <recent name="$PROJECT_DIR$/api/pb/cluster" />
-      <recent name="$PROJECT_DIR$/api/k8s" />
     </key>
   </component>
   <component name="RunManager" selected="Go 构建.go build ekube">
@@ -201,7 +196,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/pkg/terminal/types.go</url>
+          <url>file://$PROJECT_DIR$/pkg/k8s/terminal/types.go</url>
           <line>5</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>

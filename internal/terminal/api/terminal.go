@@ -1,7 +1,7 @@
 package api
 
 import (
-	"ekube/pkg/terminal"
+	terminal2 "ekube/pkg/k8s/terminal"
 	"github.com/emicklei/go-restful/v3"
 	"github.com/gorilla/websocket"
 	"k8s.io/client-go/kubernetes"
@@ -17,12 +17,12 @@ var upgrade = websocket.Upgrader{
 }
 
 type terminalHandler struct {
-	terminal terminal.Interface
+	terminal terminal2.Interface
 }
 
-func newTerminalHandler(client kubernetes.Interface, config *rest.Config, option *terminal.Option) *terminalHandler {
+func newTerminalHandler(client kubernetes.Interface, config *rest.Config, option *terminal2.Option) *terminalHandler {
 	return &terminalHandler{
-		terminal: terminal.NewTerminal(client, config, option),
+		terminal: terminal2.NewTerminal(client, config, option),
 	}
 }
 

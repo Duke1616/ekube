@@ -2,7 +2,7 @@ package config
 
 import (
 	"context"
-	"ekube/pkg/terminal"
+	"ekube/pkg/k8s/terminal"
 	"fmt"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"

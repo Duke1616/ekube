@@ -1,7 +1,7 @@
 package api
 
 import (
-	"ekube/pkg/terminal"
+	"ekube/pkg/k8s/terminal"
 	"ekube/protocol/ioc"
 	restfulspec "github.com/emicklei/go-restful-openapi/v2"
 	"github.com/emicklei/go-restful/v3"

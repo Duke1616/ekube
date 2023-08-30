@@ -23,6 +23,7 @@ require (
 	google.golang.org/protobuf v1.31.0
 	k8s.io/api v0.27.4
 	k8s.io/apimachinery v0.27.4
+	k8s.io/apiserver v0.27.2
 	k8s.io/client-go v0.27.4
 	k8s.io/code-generator v0.27.4
 	k8s.io/klog/v2 v2.90.1
