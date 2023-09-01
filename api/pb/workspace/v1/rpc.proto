@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package workspace.v1;
+option go_package = "ekube/api/workspace/v1;v1";
+
+import "mcube/pb/page/page.proto";
+import "mcube/pb/resource/meta.proto";
+import "mcube/pb/resource/label.proto";
+import "mcube/pb/request/request.proto";
+
+import "pb/workspace/v1/workspace.proto";
+
+// RPC 应用集群管理
+service RPC {
+  // 查询企业空间列表
+  rpc ListWorkspace(ListWorkspaceRequest) returns(WorkspaceSet);
+  // 查询企业空间详情
+  rpc DescribeWorkspace(DescribeWorkspaceRequest) returns(Workspace);
+}
+
+message ListWorkspaceRequest {
+  // 资源范围
+  // @gotags: json:"scope"
+  infraboard.mcube.resource.Scope scope = 1;
+  // 资源标签过滤
+  // @gotags: json:"filters"
+  repeated infraboard.mcube.resource.LabelRequirement filters = 2;
+  // 分页参数
+  // @gotags: json:"page"
+  infraboard.mcube.page.PageRequest page = 3;
+  // 关键字参数
+  // @gotags: json:"keywords"
+  string keywords = 4;
+  // 集群所属厂商
+  // @gotags: json:"vendor"
+  string vendor = 5;
+  // 集群所属地域
+  // @gotags: json:"region"
+  string region = 6;
+}
+
+message DescribeWorkspaceRequest {
+  // 集群Id
+  // @gotags: json:"id"
+  string id = 1;
+}
+
+message UpdateWorkspaceRequest {
+  // Workspace id
+  // @gotags: json:"id"
+  string id = 1;
+  // 更新模式
+  // @gotags: json:"update_mode"
+  infraboard.mcube.request.UpdateMode update_mode = 2;
+  // 更新人
+  // @gotags: json:"update_by"
+  string update_by = 3;
+  // 更新时间
+  // @gotags: json:"update_at"
+  int64 update_at = 4;
+  // 更新基础信息
+  // @gotags: json:"spec"
+  CreateWorkspaceRequest spec = 5;
+}
+
+message DeleteWorkspaceRequest {
+  // 删除workspace
+  // @gotags: json:"id"
+  string id = 1;
+}

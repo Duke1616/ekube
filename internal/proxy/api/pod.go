@@ -32,10 +32,10 @@ func (h *handler) registryPodHandler(ws *restful.WebService) {
 		Returns(200, "OK", corev1.PodList{}))
 
 	ws.Route(ws.GET("/namespaces/{namespace}/pods/{pod}/log").To(h.PodLog).
-		Doc("Retrieve log of the gateway's pod").
+		Doc("查看pod日志").
 		Param(ws.PathParameter("namespace", "the watching namespace of the gateway")).
 		Param(ws.PathParameter("pod", "the pod name of the gateway")).
-		Returns(http.StatusOK, "OK", corev1.Pod{}).
+		Returns(http.StatusOK, "OK", corev1.PodLogOptions{}).
 		Metadata(restfulspec.KeyOpenAPITags, tags))
 }
 

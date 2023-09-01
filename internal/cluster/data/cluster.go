@@ -59,17 +59,17 @@ func (s *Data) Update(ctx context.Context, ins *clusterv1.Cluster) error {
 	return nil
 }
 
-func NewListClusterRequest(r *clusterv1.ListClusterRequest) *listClusterRequest {
-	return &listClusterRequest{
+func NewListClusterRequest(r *clusterv1.ListClusterRequest) *ListClusterRequest {
+	return &ListClusterRequest{
 		r,
 	}
 }
 
-type listClusterRequest struct {
+type ListClusterRequest struct {
 	*clusterv1.ListClusterRequest
 }
 
-func (r *listClusterRequest) FindOptions() *options.FindOptions {
+func (r *ListClusterRequest) FindOptions() *options.FindOptions {
 	pageSize := int64(r.Page.PageSize)
 	skip := int64(r.Page.PageSize) * int64(r.Page.PageNumber-1)
 
@@ -84,7 +84,7 @@ func (r *listClusterRequest) FindOptions() *options.FindOptions {
 	return opt
 }
 
-func (r *listClusterRequest) FindFilter() bson.M {
+func (r *ListClusterRequest) FindFilter() bson.M {
 	filter := bson.M{}
 
 	if r.Vendor != "" {
@@ -102,7 +102,7 @@ func (r *listClusterRequest) FindFilter() bson.M {
 	return filter
 }
 
-func (s *Data) List(ctx context.Context, req *listClusterRequest) (*clusterv1.ClusterSet, error) {
+func (s *Data) List(ctx context.Context, req *ListClusterRequest) (*clusterv1.ClusterSet, error) {
 	s.log.Debugf("find filter: %s", req.FindFilter())
 
 	resp, err := s.col.Find(ctx, req.FindFilter(), req.FindOptions())

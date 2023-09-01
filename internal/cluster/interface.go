@@ -10,10 +10,10 @@ const (
 )
 
 type Service interface {
-	ClusterService
+	ServiceCluster
 }
 
-type ClusterService interface {
+type ServiceCluster interface {
 	clusterv1.RPCServer
 	CreateCluster(context.Context, *clusterv1.CreateClusterRequest) (*clusterv1.Cluster, error)
 	UpdateCluster(context.Context, *clusterv1.UpdateClusterRequest) (*clusterv1.Cluster, error)

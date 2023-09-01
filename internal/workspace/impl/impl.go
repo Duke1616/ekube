@@ -1,10 +1,10 @@
 package impl
 
 import (
-	v1 "ekube/api/pb/cluster/v1"
+	v1 "ekube/api/pb/workspace/v1"
 	"ekube/config"
-	"ekube/internal/cluster"
-	"ekube/internal/cluster/data"
+	"ekube/internal/workspace"
+	"ekube/internal/workspace/data"
 	"ekube/protocol/ioc"
 	"github.com/infraboard/mcube/logger"
 	"github.com/infraboard/mcube/logger/zap"
@@ -16,11 +16,11 @@ func init() {
 	ioc.RegistryInternalApp(&service{})
 }
 
-var _ cluster.ServiceCluster = &service{}
+var _ workspace.ServiceWorkspace = &service{}
 
 type service struct {
-	log     logger.Logger
-	cluster cluster.Service
+	log       logger.Logger
+	workspace workspace.Service
 
 	data *data.Data
 	v1.UnimplementedRPCServer
@@ -35,16 +35,15 @@ func (s *service) Config() error {
 	}
 
 	s.encryptKey = config.C().App.EncryptKey
-
 	s.data = data.NewData(db, s.Name())
-
 	s.log = zap.L().Named(s.Name())
-	s.cluster = ioc.GetInternalApp(cluster.AppName).(cluster.Service)
+
+	s.workspace = ioc.GetInternalApp(workspace.AppName).(workspace.Service)
 	return nil
 }
 
 func (s *service) Name() string {
-	return cluster.AppName
+	return workspace.AppName
 }
 
 func (s *service) Registry(server *grpc.Server) {

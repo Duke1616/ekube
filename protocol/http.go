@@ -22,10 +22,12 @@ func NewHTTPService() *HTTPService {
 	restful.DefaultResponseContentType(restful.MIME_JSON)
 	restful.DefaultRequestContentType(restful.MIME_JSON)
 
+	restful.EnableTracing(true)
+
 	// CORS中间件
 	cors := restful.CrossOriginResourceSharing{
 		AllowedHeaders: []string{"*"},
-		AllowedDomains: []string{"*"},
+		// AllowedDomains: []string{"*"},
 		AllowedMethods: []string{"HEAD", "OPTIONS", "GET", "POST", "PUT", "PATCH", "DELETE"},
 		CookiesAllowed: false,
 		Container:      r,
@@ -82,7 +84,7 @@ func (s *HTTPService) Start(ctx context.Context) {
 	// 装置子服务路由
 	ioc.LoadRestfulApp(s.PathPrefix(), s.r)
 
-	config := restfulspec.Config{
+	conf := restfulspec.Config{
 		WebServices:                   s.r.RegisteredWebServices(), // you control what services are visible
 		APIPath:                       s.apiDocPath,
 		PostBuildSwaggerObjectHandler: swagger.Docs,
@@ -94,7 +96,7 @@ func (s *HTTPService) Start(ctx context.Context) {
 		},
 	}
 
-	s.r.Add(restfulspec.NewOpenAPIService(config))
+	s.r.Add(restfulspec.NewOpenAPIService(conf))
 
 	s.l.Infof("Get the API Doc using http://%s%s", s.c.App.HTTP.Addr(), s.apiDocPath)
 

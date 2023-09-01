@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package workspace.v1;
+option go_package = "ekube/api/workspace/v1;v1";
+
+// Workspace 企业空间相关信息
+message Workspace {
+  // 空间状态
+  // @gotags: json:"meta" bson:",inline"
+  Meta meta = 1;
+  // 基础信息
+  // @gotags: json:"spec" bson:",inline"
+  CreateWorkspaceRequest spec = 2;
+}
+
+message Meta {
+  // 唯一ID
+  // @gotags: json:"id" bson:"_id"
+  string id = 1;
+  // 录入时间
+  // @gotags: json:"create_at" bson:"create_at"
+  int64 create_at = 2;
+  // 更新时间
+  // @gotags: json:"update_at" bson:"update_at"
+  int64 update_at = 3;
+  // 更新人
+  // @gotags: json:"update_by" bson:"update_by"
+  string update_by = 4;
+}
+
+message CreateWorkspaceRequest {
+  // 空间名称
+  // @gotags: json:"name" bson:"name"
+  string name = 1;
+  // 绑定集群
+  // @gotags: json:"cluster_id" bson:"cluster_id"
+  string cluster_id = 2;
+  // 空间管理员
+  // @gotags: json:"owner" bson:"owner"
+  string owner = 3;
+  // 空间描述信息
+  // @gotags: json:"description" bson:"description"
+  string description = 4;
+}
+
+// ClusterSet
+message WorkspaceSet {
+  // 分页时，返回总数量
+  // @gotags: json:"total"
+  int64 total = 1;
+  // 一页的数据
+  // @gotags: json:"items"
+  repeated Workspace items = 2;
+}

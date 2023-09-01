@@ -28,13 +28,13 @@ type Cluster struct {
 
 	// 集群状态
 	// @gotags: json:"meta" bson:",inline"
-	Meta *Meta `protobuf:"bytes,1,opt,name=meta,proto3" json:"meta" bson:",inline"`
+	Meta *Meta `protobuf:"bytes,1,opt,name=meta,proto3" json:"meta,omitempty"`
 	// 基础信息
 	// @gotags: json:"spec" bson:",inline"
-	Spec *CreateClusterRequest `protobuf:"bytes,2,opt,name=spec,proto3" json:"spec" bson:",inline"`
+	Spec *CreateClusterRequest `protobuf:"bytes,2,opt,name=spec,proto3" json:"spec,omitempty"`
 	// 集群状态
 	// @gotags: json:"status" bson:",inline"
-	Status *Status `protobuf:"bytes,3,opt,name=status,proto3" json:"status" bson:",inline"`
+	Status *Status `protobuf:"bytes,3,opt,name=status,proto3" json:"status,omitempty"`
 }
 
 func (x *Cluster) Reset() {
@@ -97,19 +97,19 @@ type Meta struct {
 
 	// 唯一ID
 	// @gotags: json:"id" bson:"_id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	// 录入时间
 	// @gotags: json:"create_at" bson:"create_at"
-	CreateAt int64 `protobuf:"varint,2,opt,name=create_at,json=createAt,proto3" json:"create_at" bson:"create_at"`
+	CreateAt int64 `protobuf:"varint,2,opt,name=create_at,json=createAt,proto3" json:"create_at,omitempty"`
 	// 更新时间
 	// @gotags: json:"update_at" bson:"update_at"
-	UpdateAt int64 `protobuf:"varint,3,opt,name=update_at,json=updateAt,proto3" json:"update_at" bson:"update_at"`
+	UpdateAt int64 `protobuf:"varint,3,opt,name=update_at,json=updateAt,proto3" json:"update_at,omitempty"`
 	// 更新人
 	// @gotags: json:"update_by" bson:"update_by"
-	UpdateBy string `protobuf:"bytes,4,opt,name=update_by,json=updateBy,proto3" json:"update_by" bson:"update_by"`
+	UpdateBy string `protobuf:"bytes,4,opt,name=update_by,json=updateBy,proto3" json:"update_by,omitempty"`
 	// 集群相关信息
 	// @gotags: json:"server_info" bson:"server_info"
-	ServerInfo *ServerInfo `protobuf:"bytes,8,opt,name=server_info,json=serverInfo,proto3" json:"server_info" bson:"server_info"`
+	ServerInfo *ServerInfo `protobuf:"bytes,8,opt,name=server_info,json=serverInfo,proto3" json:"server_info,omitempty"`
 }
 
 func (x *Meta) Reset() {
@@ -186,13 +186,13 @@ type ServerInfo struct {
 
 	// k8s的地址
 	// @gotags: json:"server" bson:"server"
-	Server string `protobuf:"bytes,1,opt,name=server,proto3" json:"server" bson:"server"`
+	Server string `protobuf:"bytes,1,opt,name=server,proto3" json:"server,omitempty"`
 	// k8s版本
 	// @gotags: json:"version" bson:"version"
-	Version string `protobuf:"bytes,2,opt,name=version,proto3" json:"version" bson:"version"`
+	Version string `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
 	// 连接用户
 	// @gotags: json:"auth_user" bson:"auth_user"
-	AuthUser string `protobuf:"bytes,3,opt,name=auth_user,json=authUser,proto3" json:"auth_user" bson:"auth_user"`
+	AuthUser string `protobuf:"bytes,3,opt,name=auth_user,json=authUser,proto3" json:"auth_user,omitempty"`
 }
 
 func (x *ServerInfo) Reset() {
@@ -255,13 +255,13 @@ type Status struct {
 
 	// 检查时间
 	// @gotags: json:"check_at" bson:"check_at"
-	CheckAt int64 `protobuf:"varint,1,opt,name=check_at,json=checkAt,proto3" json:"check_at" bson:"check_at"`
+	CheckAt int64 `protobuf:"varint,1,opt,name=check_at,json=checkAt,proto3" json:"check_at,omitempty"`
 	// API Server是否正常
 	// @gotags: json:"is_alive" bson:"is_alive"
-	IsAlive bool `protobuf:"varint,2,opt,name=is_alive,json=isAlive,proto3" json:"is_alive" bson:"is_alive"`
+	IsAlive bool `protobuf:"varint,2,opt,name=is_alive,json=isAlive,proto3" json:"is_alive,omitempty"`
 	// 异常消息
 	// @gotags: json:"message" bson:"message"
-	Message string `protobuf:"bytes,10,opt,name=message,proto3" json:"message" bson:"message"`
+	Message string `protobuf:"bytes,10,opt,name=message,proto3" json:"message,omitempty"`
 }
 
 func (x *Status) Reset() {
@@ -324,31 +324,31 @@ type CreateClusterRequest struct {
 
 	// 集群所属域
 	// @gotags: json:"domain" form:"domain" bson:"domain"
-	Domain string `protobuf:"bytes,1,opt,name=domain,proto3" json:"domain" form:"domain" bson:"domain"`
+	Domain string `protobuf:"bytes,1,opt,name=domain,proto3" json:"domain,omitempty"`
 	// 集群所属空间
 	// @gotags: json:"namespace" form:"namespace" bson:"namespace"
-	Namespace string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace" form:"namespace" bson:"namespace"`
+	Namespace string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
 	// 创建人
 	// @gotags: json:"create_by" form:"create_by" bson:"create_by"
-	CreateBy string `protobuf:"bytes,3,opt,name=create_by,json=createBy,proto3" json:"create_by" form:"create_by" bson:"create_by"`
+	CreateBy string `protobuf:"bytes,3,opt,name=create_by,json=createBy,proto3" json:"create_by,omitempty"`
 	// 集群提供商
 	// @gotags: json:"provider" bson:"provider" form:"provider" validate:"required"
-	Provider string `protobuf:"bytes,4,opt,name=provider,proto3" json:"provider" bson:"provider" form:"provider" validate:"required"`
+	Provider string `protobuf:"bytes,4,opt,name=provider,proto3" json:"provider,omitempty"`
 	// 集群所处地域
 	// @gotags: json:"region" bson:"region" form:"region" validate:"required"
-	Region string `protobuf:"bytes,5,opt,name=region,proto3" json:"region" bson:"region" form:"region" validate:"required"`
+	Region string `protobuf:"bytes,5,opt,name=region,proto3" json:"region,omitempty"`
 	// 名称
 	// @gotags: json:"name" bson:"name" form:"name" validate:"required"
-	Name string `protobuf:"bytes,6,opt,name=name,proto3" json:"name" bson:"name" form:"name" validate:"required"`
+	Name string `protobuf:"bytes,6,opt,name=name,proto3" json:"name,omitempty"`
 	// 集群客户端访问凭证
 	// @gotags: json:"kube_config" bson:"kube_config" form:"kube_config" validate:"required"
-	KubeConfig string `protobuf:"bytes,7,opt,name=kube_config,json=kubeConfig,proto3" json:"kube_config" bson:"kube_config" form:"kube_config" validate:"required"`
+	KubeConfig string `protobuf:"bytes,7,opt,name=kube_config,json=kubeConfig,proto3" json:"kube_config,omitempty"`
 	// 集群描述
 	// @gotags: json:"description" form:"description" bson:"description"
-	Description string `protobuf:"bytes,8,opt,name=description,proto3" json:"description" form:"description" bson:"description"`
+	Description string `protobuf:"bytes,8,opt,name=description,proto3" json:"description,omitempty"`
 	// 集群标签, env=prod
 	// @gotags: json:"labels" form:"labels" bson:"labels"
-	Labels map[string]string `protobuf:"bytes,9,rep,name=labels,proto3" json:"labels" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" form:"labels" bson:"labels"`
+	Labels map[string]string `protobuf:"bytes,9,rep,name=labels,proto3" json:"labels,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 }
 
 func (x *CreateClusterRequest) Reset() {
@@ -454,10 +454,10 @@ type ClusterSet struct {
 
 	// 分页时，返回总数量
 	// @gotags: json:"total"
-	Total int64 `protobuf:"varint,1,opt,name=total,proto3" json:"total"`
+	Total int64 `protobuf:"varint,1,opt,name=total,proto3" json:"total,omitempty"`
 	// 一页的数据
 	// @gotags: json:"items"
-	Items []*Cluster `protobuf:"bytes,2,rep,name=items,proto3" json:"items"`
+	Items []*Cluster `protobuf:"bytes,2,rep,name=items,proto3" json:"items,omitempty"`
 }
 
 func (x *ClusterSet) Reset() {

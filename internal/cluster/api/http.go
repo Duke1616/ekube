@@ -17,13 +17,13 @@ var (
 )
 
 type handler struct {
-	service cluster.ClusterService
+	service cluster.ServiceCluster
 	log     logger.Logger
 }
 
 func (h *handler) Config() error {
 	h.log = zap.L().Named(cluster.AppName)
-	h.service = ioc.GetInternalApp(cluster.AppName).(cluster.ClusterService)
+	h.service = ioc.GetInternalApp(cluster.AppName).(cluster.ServiceCluster)
 	return nil
 }
 
