@@ -5,29 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98931868-6569-4e33-b7fa-dc484e09df39" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/api/pb/workspace/v1/rpc.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/pb/workspace/v1/workspace.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/project/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/workspace/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/workspace/api/http.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/workspace/data/data.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/workspace/impl/impl.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/workspace/impl/workspace.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/workspace/interface.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/workspace/workspace.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/k8s/resources/deployment/deployment.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/pb/cluster/v1/cluster.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/cluster/v1/cluster.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/pb/cluster/v1/rpc.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/cluster/v1/rpc.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/all/grpc.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/all/grpc.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/all/internal.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/all/internal.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/cluster/api/http.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/cluster/api/http.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/cluster/data/cluster.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/cluster/data/cluster.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/cluster/impl/impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/cluster/impl/impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/cluster/interface.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/cluster/interface.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/proxy/api/http.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/proxy/api/http.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/proxy/api/pod.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/proxy/api/pod.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/apiserver/query/query.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/apiserver/query/query.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/k8s/client/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/k8s/client/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/k8s/interface.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/k8s/resources/interface.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/k8s/pod/pod.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/k8s/resources/pod/pod.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/k8s/resource/resource.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/k8s/resources/resource/resource.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/protocol/http.go" beforeDir="false" afterPath="$PROJECT_DIR$/protocol/http.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protocol/ioc/restful.go" beforeDir="false" afterPath="$PROJECT_DIR$/protocol/ioc/restful.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,11 +93,11 @@
       <recent name="$PROJECT_DIR$/api/pb/cluster/validate" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pkg/k8s/resource/resource" />
+      <recent name="$PROJECT_DIR$/pkg/k8s/resource" />
       <recent name="$PROJECT_DIR$/pkg/k8s" />
       <recent name="$PROJECT_DIR$/conf/crds" />
       <recent name="$PROJECT_DIR$/cmd" />
-      <recent name="$PROJECT_DIR$/api/pb/cluster/v1" />
-      <recent name="$PROJECT_DIR$/api/pb/cluster" />
     </key>
   </component>
   <component name="RunManager" selected="Go 构建.go build ekube">

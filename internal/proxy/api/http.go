@@ -4,7 +4,7 @@ import (
 	"ekube/internal/cluster"
 	"ekube/internal/proxy"
 	"ekube/pkg/informer"
-	"ekube/pkg/k8s/resource"
+	"ekube/pkg/k8s/resources/resource"
 	"ekube/protocol/ioc"
 	"ekube/tools"
 	"github.com/emicklei/go-restful/v3"

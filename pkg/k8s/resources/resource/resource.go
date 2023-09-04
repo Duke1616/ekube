@@ -3,8 +3,8 @@ package resource
 import (
 	"ekube/pkg/apiserver/query"
 	"ekube/pkg/informer"
-	"ekube/pkg/k8s"
-	"ekube/pkg/k8s/pod"
+	"ekube/pkg/k8s/resources"
+	"ekube/pkg/k8s/resources/pod"
 	"errors"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
@@ -13,13 +13,13 @@ import (
 var ErrResourceNotSupported = errors.New("resource is not supported")
 
 type ResourceGetter struct {
-	clusterResourceGetters    map[schema.GroupVersionResource]k8s.Interface
-	namespacedResourceGetters map[schema.GroupVersionResource]k8s.Interface
+	clusterResourceGetters    map[schema.GroupVersionResource]resources.Interface
+	namespacedResourceGetters map[schema.GroupVersionResource]resources.Interface
 }
 
 func NewResourceGetter(factory informer.InformerFactory) *ResourceGetter {
-	namespacedResourceGetters := make(map[schema.GroupVersionResource]k8s.Interface)
-	clusterResourceGetters := make(map[schema.GroupVersionResource]k8s.Interface)
+	namespacedResourceGetters := make(map[schema.GroupVersionResource]resources.Interface)
+	clusterResourceGetters := make(map[schema.GroupVersionResource]resources.Interface)
 
 	namespacedResourceGetters[schema.GroupVersionResource{Group: "", Version: "v1", Resource: "pods"}] = pod.New(factory.KubernetesSharedInformerFactory())
 
@@ -31,7 +31,7 @@ func NewResourceGetter(factory informer.InformerFactory) *ResourceGetter {
 
 // TryResource will retrieve a getter with resource name, it doesn't guarantee find resource with correct group version
 // need to refactor this use schema.GroupVersionResource
-func (r *ResourceGetter) TryResource(clusterScope bool, resource string) k8s.Interface {
+func (r *ResourceGetter) TryResource(clusterScope bool, resource string) resources.Interface {
 	if clusterScope {
 		for k, v := range r.clusterResourceGetters {
 			if k.Resource == resource {
@@ -56,7 +56,7 @@ func (r *ResourceGetter) Get(resource, namespace, name string) (runtime.Object, 
 	return getter.Get(namespace, name)
 }
 
-func (r *ResourceGetter) List(resource, namespace string, query *query.Query) (*k8s.ListResult, error) {
+func (r *ResourceGetter) List(resource, namespace string, query *query.Query) (*resources.ListResult, error) {
 	clusterScope := namespace == ""
 	getter := r.TryResource(clusterScope, resource)
 	if getter == nil {

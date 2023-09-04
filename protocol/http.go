@@ -22,7 +22,7 @@ func NewHTTPService() *HTTPService {
 	restful.DefaultResponseContentType(restful.MIME_JSON)
 	restful.DefaultRequestContentType(restful.MIME_JSON)
 
-	restful.EnableTracing(true)
+	//restful.EnableTracing(true)
 
 	// CORS中间件
 	cors := restful.CrossOriginResourceSharing{

@@ -19,26 +19,26 @@ type kubernetesClient struct {
 }
 
 func NewKubernetesClient(option *config.Kubernetes) (Client, error) {
-	config, err := clientcmd.BuildConfigFromFlags("", option.KubeConfig)
+	conf, err := clientcmd.BuildConfigFromFlags("", option.KubeConfig)
 	if err != nil {
 		return nil, err
 	}
 
-	config.QPS = option.QPS
-	config.Burst = option.Burst
+	conf.QPS = option.QPS
+	conf.Burst = option.Burst
 
 	if err != nil {
 		return nil, err
 	}
 
 	var k kubernetesClient
-	k.k8s, err = kubernetes.NewForConfig(config)
+	k.k8s, err = kubernetes.NewForConfig(conf)
 
 	if err != nil {
 		return nil, err
 	}
 
-	k.config = config
+	k.config = conf
 
 	return &k, nil
 }
