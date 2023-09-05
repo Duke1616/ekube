@@ -2,12 +2,17 @@ package protocol
 
 import (
 	"context"
+	v1 "ekube/api/pb/endpoint/v1"
 	"ekube/config"
 	"ekube/protocol/ioc"
 	"ekube/swagger"
+	"fmt"
 	restfulspec "github.com/emicklei/go-restful-openapi/v2"
+	"github.com/infraboard/mcube/http/label"
 	"net/http"
 	"time"
+
+	"ekube/internal/endpoint"
 
 	"github.com/emicklei/go-restful/v3"
 
@@ -126,22 +131,46 @@ func (s *HTTPService) Stop() error {
 	return nil
 }
 
-func (s *HTTPService) RegistryEndpoint() {
+func (s *HTTPService) RegistryEndpoint() error {
 	// 注册服务权限条目
 	s.l.Info("start registry endpoints ...")
 
-	//entries := []*endpoint.Entry{}
-	//wss := s.r.RegisteredWebServices()
-	//for i := range wss {
-	//	es := endpoint.TransferRoutesToEntry(wss[i].Routes())
-	//	entries = append(entries, endpoint.GetPRBACEntry(es)...)
-	//}
-	//
-	//req := endpoint.NewRegistryRequest(version.Short(), entries)
-	//_, err := s.endpoint.RegistryEndpoint(context.Background(), req)
-	//if err != nil {
-	//	s.l.Warnf("registry endpoints error, %s", err)
-	//} else {
-	//	s.l.Debug("service endpoints registry success")
-	//}
+	wss := s.r.RegisteredWebServices()
+
+	endpoints := v1.RegistryRequest{
+		ServiceId: "ekube",
+		Entries:   []*v1.Entry{},
+	}
+
+	for i := range wss {
+		for _, r := range wss[i].Routes() {
+			m := label.Meta(r.Metadata)
+			endpoints.Entries = append(endpoints.Entries, &v1.Entry{
+				FunctionName:     r.Operation,
+				Path:             fmt.Sprintf("%s.%s", r.Method, r.Path),
+				Method:           r.Method,
+				Resource:         m.Resource(),
+				AuthEnable:       m.AuthEnable(),
+				PermissionEnable: m.PermissionEnable(),
+				Allow:            m.Allow(),
+				AuditLog:         m.AuditEnable(),
+				Labels: map[string]string{
+					label.Action: m.Action(),
+				},
+			})
+		}
+	}
+
+	end := ioc.GetInternalApp(endpoint.AppName).(endpoint.Service)
+	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+	defer cancel()
+
+	resp, err := end.RegistryEndpoint(ctx, &endpoints)
+	if err != nil {
+		return err
+	}
+
+	s.l.Debugf("registry response %s", resp)
+
+	return nil
 }

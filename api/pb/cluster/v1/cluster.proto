@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package cluster.v1;
-option go_package = "ekube/api/cluster/v1;v1";
+package ekube.cluster.v1;
+option go_package = "ekube/pb/api/cluster/v1;cluster";
 
 
 // Cluster k8s集群相关信息

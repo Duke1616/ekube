@@ -4,6 +4,7 @@ import (
 	"ekube/pkg/apiserver/query"
 	"ekube/pkg/informer"
 	"ekube/pkg/k8s/resources"
+	"ekube/pkg/k8s/resources/deployment"
 	"ekube/pkg/k8s/resources/pod"
 	"errors"
 	"k8s.io/apimachinery/pkg/runtime"
@@ -22,6 +23,7 @@ func NewResourceGetter(factory informer.InformerFactory) *ResourceGetter {
 	clusterResourceGetters := make(map[schema.GroupVersionResource]resources.Interface)
 
 	namespacedResourceGetters[schema.GroupVersionResource{Group: "", Version: "v1", Resource: "pods"}] = pod.New(factory.KubernetesSharedInformerFactory())
+	namespacedResourceGetters[schema.GroupVersionResource{Group: "apps", Version: "v1", Resource: "deployments"}] = deployment.New(factory.KubernetesSharedInformerFactory())
 
 	return &ResourceGetter{
 		namespacedResourceGetters: namespacedResourceGetters,

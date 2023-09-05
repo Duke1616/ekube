@@ -1,0 +1,4 @@
+syntax = "proto3";
+
+package ekube.policy.v1;
+option go_package = "ekube/api/pb/policy/v1;policy";

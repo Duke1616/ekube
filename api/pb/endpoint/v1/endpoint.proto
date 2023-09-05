@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+package ekube.endpoint.v1;
+option go_package = "ekube/api/pb/endpoint/v1;endpoint";
+
+// Endpoint Service's features
+message Endpoint {
+  // 端点名称
+  // @gotags: bson:"_id" json:"id" validate:"required,lte=64"
+  string id = 1;
+  // 创建时间
+  // @gotags: bson:"create_at" json:"create_at,omitempty"
+  int64 create_at = 2;
+  // 更新时间
+  // @gotags: bson:"update_at" json:"update_at,omitempty"
+  int64 update_at = 3;
+  // 该功能属于那个服务
+  // @gotags: bson:"service_id" json:"service_id,omitempty" validate:"required,lte=64"
+  string service_id= 4;
+  // 服务那个版本的功能
+  // @gotags: bson:"version" json:"version,omitempty" validate:"required,lte=64"
+  string version = 5;
+  // 路由条目信息
+  // @gotags: bson:",inline" json:"entry" validate:"required"
+  Entry entry = 6;
+}
+
+// Entry 路由条目
+message Entry {
+  // 函数名称
+  // @gotags: bson:"function_name" json:"function_name"
+  string function_name = 2;
+  // HTTP path 用于自动生成http api
+  // @gotags: bson:"path" json:"path"
+  string path = 3;
+  // HTTP method 用于自动生成http api
+  // @gotags: bson:"method" json:"method"
+  string method = 4;
+  // 资源名称
+  // @gotags: bson:"resource" json:"resource"
+  string resource = 5;
+  // 是否校验用户身份 (access_token 校验)
+  // @gotags: bson:"auth_enable" json:"auth_enable"
+  bool auth_enable = 6;
+  // 验证码校验(开启双因子认证需要) (code 校验)
+  // @gotags: bson:"code_enable" json:"code_enable"
+  bool code_enable = 13;
+  // 权限验证的模式, 支持ACL/PRBAC, 默认PRBAC
+  // @gotags: bson:"permission_mode" json:"permission_mode"
+  string permission_mode = 14;
+  // PRBAC模式下 开启权限校验
+  // @gotags: bson:"permission_enable" json:"permission_enable"
+  bool permission_enable = 7;
+  // ACL模式下, 允许的通过的身份标识符, 比如角色, 用户类型之类
+  // @gotags: bson:"allow" json:"allow"
+  repeated string allow = 12;
+  // 是否开启操作审计, 开启后这次操作将被记录
+  // @gotags: bson:"audit_log" json:"audit_log"
+  bool audit_log = 9;
+  // 名称空间不能为空
+  // @gotags: bson:"required_namespace" json:"required_namespace"
+  bool required_namespace = 10;
+  // 标签
+  // @gotags: bson:"labels" json:"labels"
+  map<string, string> labels = 8;
+  // 扩展属性
+  // @gotags: bson:"extension" json:"extension"
+  map<string, string> extension = 11;
+}
+
+message EndpointSet {
+  // @gotags: bson:"total" json:"total"
+  int64 total = 1;
+  // @gotags: bson:"items" json:"items"
+  repeated Endpoint items = 2;
+}
+
+
+// RegistryRequest 服务注册请求
+message RegistryRequest {
+  // 服务的Id
+  // @gotags: json:"service_id" validate:"required"
+  string service_id = 1;
+  // 服务的版本
+  // @gotags: json:"version" validate:"required,lte=32"
+  string version = 2;
+  // 服务的功能
+  // @gotags: json:"entries"
+  repeated Entry entries = 3;
+  // 扩展属性
+  // @gotags: bson:"extension" json:"extension"
+  map<string, string> extension = 15;
+}
+
+// RegistryReponse todo
+message RegistryResponse {
+  // @gotags: json:"message"
+  string message = 1;
+}

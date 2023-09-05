@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package ekube.policy.v1;
+option go_package = "ekube/api/pb/policy/v1;policy";
+
+import "pb/role/v1/role.proto";
+
+// Policy 权限策略
+message Policy {
+  // 元信息
+  // @gotags: bson:",inline" json:"meta"
+  Meta meta = 1;
+  // 策略定义
+  // @gotags: bson:",inline" json:"spec"
+  CreatePolicyRequest spec = 2;
+  // 关联的角色对象
+  // @gotags: bson:"-" json:"role,omitempty"
+  role.v1.Role role = 3;
+}
+
+// CreatePolicyRequest 创建策略的请求
+message CreatePolicyRequest {
+  // 创建者
+  // @gotags: bson:"create_by" json:"create_by"
+  string create_by = 1;
+  // 策略所属企业空间
+  // @gotags: bson:"domain" json:"domain"
+  string workspace = 2;
+  // 所属项目
+  // @gotags: bson:"namespace" json:"namespace" validate:"lte=120"
+  string namespace = 3;
+  // 用户Id
+  // @gotags: bson:"user_id" json:"user_id" validate:"required,lte=120"
+  string user_id = 4;
+  // 角色Id
+  // @gotags: bson:"role_id" json:"role_id" validate:"required,lte=40"
+  string role_id = 5;
+  // 该角色的生效范围
+  // @gotags: bson:"scope" json:"scope"
+  repeated string scope = 6;
+  // 策略过期时间
+  // @gotags: bson:"expired_time" json:"expired_time"
+  int64 expired_time = 7;
+  // 启用该策略
+  // @gotags: bson:"enabled" json:"enabled"
+  bool enabled = 8;
+  // 扩展属性
+  // @gotags: bson:"extra" json:"extra"
+  map<string,string> extra = 10;
+  // 标签
+  // @gotags: bson:"labels" json:"labels"
+  map<string,string> labels = 11;
+}
+
+
+message Meta {
+  // 唯一ID
+  // @gotags: json:"id" bson:"_id"
+  string id = 1;
+  // 录入时间
+  // @gotags: json:"create_at" bson:"create_at"
+  int64 create_at = 2;
+  // 更新时间
+  // @gotags: json:"update_at" bson:"update_at"
+  int64 update_at = 3;
+  // 更新人
+  // @gotags: json:"update_by" bson:"update_by"
+  string update_by = 4;
+}

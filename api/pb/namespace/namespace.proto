@@ -1,0 +1,4 @@
+syntax = "proto3";
+
+package ekube.namespace.v1;
+option go_package = "ekube/api/pb/namespace/v1;namespace";

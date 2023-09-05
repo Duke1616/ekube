@@ -71,6 +71,7 @@ func (s *APIServer) PrepareRun(stopCh <-chan struct{}) {
 	urlruntime.Must(terminalAPI.Handler.AddToContainer(s.KubernetesClient.Kubernetes(), s.KubernetesClient.Config(), config.C().TerminalOption))
 	gvrs := []schema.GroupVersionResource{
 		{Group: "", Version: "v1", Resource: "pods"},
+		{Group: "apps", Version: "v1", Resource: "deployments"},
 	}
 
 	for _, v := range gvrs {

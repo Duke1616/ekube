@@ -167,6 +167,7 @@ github.com/infraboard/mcube/pb/http
 github.com/infraboard/mcube/pb/request
 github.com/infraboard/mcube/pb/resource
 github.com/infraboard/mcube/types/bytes
+github.com/infraboard/mcube/types/ftime
 github.com/infraboard/mcube/validator
 # github.com/josharian/intern v1.0.0
 ## explicit; go 1.5

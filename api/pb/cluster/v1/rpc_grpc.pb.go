@@ -4,7 +4,7 @@
 // - protoc             v3.21.2
 // source: pb/cluster/v1/rpc.proto
 
-package v1
+package cluster
 
 import (
 	context "context"
@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	RPC_ListCluster_FullMethodName     = "/cluster.v1.RPC/ListCluster"
-	RPC_DescribeCluster_FullMethodName = "/cluster.v1.RPC/DescribeCluster"
+	RPC_ListCluster_FullMethodName     = "/ekube.cluster.v1.RPC/ListCluster"
+	RPC_DescribeCluster_FullMethodName = "/ekube.cluster.v1.RPC/DescribeCluster"
 )
 
 // RPCClient is the client API for RPC service.
@@ -133,7 +133,7 @@ func _RPC_DescribeCluster_Handler(srv interface{}, ctx context.Context, dec func
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var RPC_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cluster.v1.RPC",
+	ServiceName: "ekube.cluster.v1.RPC",
 	HandlerType: (*RPCServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

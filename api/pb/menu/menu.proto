@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package ekube.menu.v1;
+option go_package = "ekube/api/pb/menu/v1;menu";
+
+message Menu {
+  // 元信息
+  // @gotags: bson:",inline" json:"meta"
+  Meta meta = 1;
+  // 角色描述信息
+  // @gotags: bson:",inline" json:"spec"
+  CreateMenuRequest spec = 2;
+}
+
+
+message Meta {
+  // 唯一ID
+  // @gotags: json:"id" bson:"_id"
+  string id = 1;
+  // 录入时间
+  // @gotags: json:"create_at" bson:"create_at"
+  int64 create_at = 2;
+  // 更新时间
+  // @gotags: json:"update_at" bson:"update_at"
+  int64 update_at = 3;
+  // 更新人
+  // @gotags: json:"update_by" bson:"update_by"
+  string update_by = 4;
+}
+
+message CreateMenuRequest {
+  // 菜单名称
+  // @gotags: json:"name" bson:"name"
+  string name = 1;
+  // 父菜单ID
+  // @gotags: json:"parent_id" bson:"parent_id"
+  string parent_id = 2;
+  // 菜单路径
+  // @gotags: json:"url" bson:"url"
+  string url = 3;
+  // 菜单路径
+  // @gotags: json:"icon" bson:"icon"
+  string icon = 4;
+  // 菜单排序
+  // @gotags: json:"sort" bson:"sort"
+  string sort = 5;
+  // 依赖后端 TODO 考虑使用validate token自动生成
+  // @gotags: json:"depend_endpoint" bson:"depend_endpoint"
+  // repeated string depend_endpoint = 6;
+}
+
+message MenuSet {
+  // @gotags: bson:"total" json:"total"
+  int64 total = 1;
+  // @gotags: bson:"items" json:"items"
+  repeated Menu items = 2;
+}

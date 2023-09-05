@@ -56,5 +56,11 @@ func (p *podsGetter) compare(left runtime.Object, right runtime.Object, field qu
 }
 
 func (p *podsGetter) filter(object runtime.Object, filter query.Filter) bool {
+	_, ok := object.(*corev1.Pod)
+
+	if !ok {
+		return false
+	}
+
 	return true
 }
