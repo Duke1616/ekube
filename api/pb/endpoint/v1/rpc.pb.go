@@ -28,7 +28,7 @@ type DescribeEndpointRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	// @gotags: json:"id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
 }
 
 func (x *DescribeEndpointRequest) Reset() {
@@ -77,21 +77,21 @@ type ListEndpointRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	// @gotags: json:"page"
-	Page *request.PageRequest `protobuf:"bytes,1,opt,name=page,proto3" json:"page,omitempty"`
+	Page *request.PageRequest `protobuf:"bytes,1,opt,name=page,proto3" json:"page"`
 	// @gotags: json:"service_ids"
-	ServiceIds []string `protobuf:"bytes,2,rep,name=service_ids,json=serviceIds,proto3" json:"service_ids,omitempty"`
+	ServiceIds []string `protobuf:"bytes,2,rep,name=service_ids,json=serviceIds,proto3" json:"service_ids"`
 	// @gotags: json:"path"
-	Path string `protobuf:"bytes,3,opt,name=path,proto3" json:"path,omitempty"`
+	Path string `protobuf:"bytes,3,opt,name=path,proto3" json:"path"`
 	// @gotags: json:"method"
-	Method string `protobuf:"bytes,4,opt,name=method,proto3" json:"method,omitempty"`
+	Method string `protobuf:"bytes,4,opt,name=method,proto3" json:"method"`
 	// @gotags: json:"function_name"
-	FunctionName string `protobuf:"bytes,5,opt,name=function_name,json=functionName,proto3" json:"function_name,omitempty"`
+	FunctionName string `protobuf:"bytes,5,opt,name=function_name,json=functionName,proto3" json:"function_name"`
 	// @gotags: json:"resources"
-	Resources []string `protobuf:"bytes,6,rep,name=resources,proto3" json:"resources,omitempty"`
+	Resources []string `protobuf:"bytes,6,rep,name=resources,proto3" json:"resources"`
 	// @gotags: json:"labels"
-	Labels map[string]string `protobuf:"bytes,7,rep,name=labels,proto3" json:"labels,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Labels map[string]string `protobuf:"bytes,7,rep,name=labels,proto3" json:"labels" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	// @gotags: json:"permission_enable"
-	PermissionEnable *bool `protobuf:"varint,8,opt,name=permission_enable,json=permissionEnable,proto3,oneof" json:"permission_enable,omitempty"`
+	PermissionEnable *bool `protobuf:"varint,8,opt,name=permission_enable,json=permissionEnable,proto3,oneof" json:"permission_enable"`
 }
 
 func (x *ListEndpointRequest) Reset() {
@@ -189,7 +189,7 @@ type DeleteEndpointRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	// @gotags: json:"service_id"
-	ServiceId string `protobuf:"bytes,1,opt,name=service_id,json=serviceId,proto3" json:"service_id,omitempty"`
+	ServiceId string `protobuf:"bytes,1,opt,name=service_id,json=serviceId,proto3" json:"service_id"`
 }
 
 func (x *DeleteEndpointRequest) Reset() {

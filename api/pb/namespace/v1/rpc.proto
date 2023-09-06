@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package ekube.namespace.v1;
+option go_package = "ekube/api/pb/namespace/v1;namespace";
+
+import "pb/namespace/v1/namespace.proto";
+import "ekube/pb/page/page.proto";
+
+// RPC 应用集群管理
+service RPC {
+  // 查询企业空间列表
+  rpc ListNamespace(ListNamespaceRequest) returns(NamespaceSet);
+  // 查询企业空间详情
+  rpc DescribeNamespace(DescribeNamespaceRequest) returns(Namespace);
+}
+
+message ListNamespaceRequest {
+  // 分页
+  // @gotags: json:"page"
+  ekube.page.PageRequest page = 1;
+  // 根据用户权限过滤展示
+  // @gotags: json:"user_id"
+  string user_id = 2;
+}
+
+message DescribeNamespaceRequest {
+  // 集群Id
+  // @gotags: json:"id"
+  string id = 1;
+}
+
+message UpdateNamespaceRequest {
+
+}
+
+message DeleteNamespaceRequest {
+  // 删除workspace
+  // @gotags: json:"id"
+  string id = 1;
+}

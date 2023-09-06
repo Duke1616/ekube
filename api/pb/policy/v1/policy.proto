@@ -37,7 +37,7 @@ message CreatePolicyRequest {
   string role_id = 5;
   // 该角色的生效范围
   // @gotags: bson:"scope" json:"scope"
-  repeated string scope = 6;
+  string scope = 6;
   // 策略过期时间
   // @gotags: bson:"expired_time" json:"expired_time"
   int64 expired_time = 7;

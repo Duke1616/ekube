@@ -30,22 +30,22 @@ type ListClusterRequest struct {
 
 	// 资源范围
 	// @gotags: json:"scope"
-	Scope *resource.Scope `protobuf:"bytes,1,opt,name=scope,proto3" json:"scope,omitempty"`
+	Scope *resource.Scope `protobuf:"bytes,1,opt,name=scope,proto3" json:"scope"`
 	// 资源标签过滤
 	// @gotags: json:"filters"
-	Filters []*resource.LabelRequirement `protobuf:"bytes,2,rep,name=filters,proto3" json:"filters,omitempty"`
+	Filters []*resource.LabelRequirement `protobuf:"bytes,2,rep,name=filters,proto3" json:"filters"`
 	// 分页参数
 	// @gotags: json:"page"
-	Page *request.PageRequest `protobuf:"bytes,3,opt,name=page,proto3" json:"page,omitempty"`
+	Page *request.PageRequest `protobuf:"bytes,3,opt,name=page,proto3" json:"page"`
 	// 关键字参数
 	// @gotags: json:"keywords"
-	Keywords string `protobuf:"bytes,4,opt,name=keywords,proto3" json:"keywords,omitempty"`
+	Keywords string `protobuf:"bytes,4,opt,name=keywords,proto3" json:"keywords"`
 	// 集群所属厂商
 	// @gotags: json:"vendor"
-	Vendor string `protobuf:"bytes,5,opt,name=vendor,proto3" json:"vendor,omitempty"`
+	Vendor string `protobuf:"bytes,5,opt,name=vendor,proto3" json:"vendor"`
 	// 集群所属地域
 	// @gotags: json:"region"
-	Region string `protobuf:"bytes,6,opt,name=region,proto3" json:"region,omitempty"`
+	Region string `protobuf:"bytes,6,opt,name=region,proto3" json:"region"`
 }
 
 func (x *ListClusterRequest) Reset() {
@@ -129,7 +129,7 @@ type DescribeClusterRequest struct {
 
 	// 集群Id
 	// @gotags: json:"id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
 }
 
 func (x *DescribeClusterRequest) Reset() {
@@ -178,19 +178,19 @@ type UpdateClusterRequest struct {
 
 	// Cluster id
 	// @gotags: json:"id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
 	// 更新模式
 	// @gotags: json:"update_mode"
-	UpdateMode request1.UpdateMode `protobuf:"varint,2,opt,name=update_mode,json=updateMode,proto3,enum=infraboard.mcube.request.UpdateMode" json:"update_mode,omitempty"`
+	UpdateMode request1.UpdateMode `protobuf:"varint,2,opt,name=update_mode,json=updateMode,proto3,enum=infraboard.mcube.request.UpdateMode" json:"update_mode"`
 	// 更新人
 	// @gotags: json:"update_by"
-	UpdateBy string `protobuf:"bytes,3,opt,name=update_by,json=updateBy,proto3" json:"update_by,omitempty"`
+	UpdateBy string `protobuf:"bytes,3,opt,name=update_by,json=updateBy,proto3" json:"update_by"`
 	// 更新时间
 	// @gotags: json:"update_at"
-	UpdateAt int64 `protobuf:"varint,4,opt,name=update_at,json=updateAt,proto3" json:"update_at,omitempty"`
+	UpdateAt int64 `protobuf:"varint,4,opt,name=update_at,json=updateAt,proto3" json:"update_at"`
 	// 更新的书本信息
 	// @gotags: json:"spec"
-	Spec *CreateClusterRequest `protobuf:"bytes,5,opt,name=spec,proto3" json:"spec,omitempty"`
+	Spec *CreateClusterRequest `protobuf:"bytes,5,opt,name=spec,proto3" json:"spec"`
 }
 
 func (x *UpdateClusterRequest) Reset() {
@@ -267,7 +267,7 @@ type DeleteClusterRequest struct {
 
 	// 部署Id
 	// @gotags: json:"id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
 }
 
 func (x *DeleteClusterRequest) Reset() {

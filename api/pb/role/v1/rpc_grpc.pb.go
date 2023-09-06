@@ -19,9 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	RPC_QueryRole_FullMethodName          = "/ekube.role.v1.RPC/QueryRole"
+	RPC_ListRole_FullMethodName           = "/ekube.role.v1.RPC/ListRole"
 	RPC_DescribeRole_FullMethodName       = "/ekube.role.v1.RPC/DescribeRole"
-	RPC_QueryPermission_FullMethodName    = "/ekube.role.v1.RPC/QueryPermission"
+	RPC_ListPermission_FullMethodName     = "/ekube.role.v1.RPC/ListPermission"
 	RPC_DescribePermission_FullMethodName = "/ekube.role.v1.RPC/DescribePermission"
 )
 
@@ -29,9 +29,9 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RPCClient interface {
-	QueryRole(ctx context.Context, in *QueryRoleRequest, opts ...grpc.CallOption) (*RoleSet, error)
+	ListRole(ctx context.Context, in *ListRoleRequest, opts ...grpc.CallOption) (*RoleSet, error)
 	DescribeRole(ctx context.Context, in *DescribeRoleRequest, opts ...grpc.CallOption) (*Role, error)
-	QueryPermission(ctx context.Context, in *QueryPermissionRequest, opts ...grpc.CallOption) (*PermissionSet, error)
+	ListPermission(ctx context.Context, in *ListPermissionRequest, opts ...grpc.CallOption) (*PermissionSet, error)
 	DescribePermission(ctx context.Context, in *DescribePermissionRequest, opts ...grpc.CallOption) (*Permission, error)
 }
 
@@ -43,9 +43,9 @@ func NewRPCClient(cc grpc.ClientConnInterface) RPCClient {
 	return &rPCClient{cc}
 }
 
-func (c *rPCClient) QueryRole(ctx context.Context, in *QueryRoleRequest, opts ...grpc.CallOption) (*RoleSet, error) {
+func (c *rPCClient) ListRole(ctx context.Context, in *ListRoleRequest, opts ...grpc.CallOption) (*RoleSet, error) {
 	out := new(RoleSet)
-	err := c.cc.Invoke(ctx, RPC_QueryRole_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, RPC_ListRole_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -61,9 +61,9 @@ func (c *rPCClient) DescribeRole(ctx context.Context, in *DescribeRoleRequest, o
 	return out, nil
 }
 
-func (c *rPCClient) QueryPermission(ctx context.Context, in *QueryPermissionRequest, opts ...grpc.CallOption) (*PermissionSet, error) {
+func (c *rPCClient) ListPermission(ctx context.Context, in *ListPermissionRequest, opts ...grpc.CallOption) (*PermissionSet, error) {
 	out := new(PermissionSet)
-	err := c.cc.Invoke(ctx, RPC_QueryPermission_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, RPC_ListPermission_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -83,9 +83,9 @@ func (c *rPCClient) DescribePermission(ctx context.Context, in *DescribePermissi
 // All implementations must embed UnimplementedRPCServer
 // for forward compatibility
 type RPCServer interface {
-	QueryRole(context.Context, *QueryRoleRequest) (*RoleSet, error)
+	ListRole(context.Context, *ListRoleRequest) (*RoleSet, error)
 	DescribeRole(context.Context, *DescribeRoleRequest) (*Role, error)
-	QueryPermission(context.Context, *QueryPermissionRequest) (*PermissionSet, error)
+	ListPermission(context.Context, *ListPermissionRequest) (*PermissionSet, error)
 	DescribePermission(context.Context, *DescribePermissionRequest) (*Permission, error)
 	mustEmbedUnimplementedRPCServer()
 }
@@ -94,14 +94,14 @@ type RPCServer interface {
 type UnimplementedRPCServer struct {
 }
 
-func (UnimplementedRPCServer) QueryRole(context.Context, *QueryRoleRequest) (*RoleSet, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method QueryRole not implemented")
+func (UnimplementedRPCServer) ListRole(context.Context, *ListRoleRequest) (*RoleSet, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRole not implemented")
 }
 func (UnimplementedRPCServer) DescribeRole(context.Context, *DescribeRoleRequest) (*Role, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DescribeRole not implemented")
 }
-func (UnimplementedRPCServer) QueryPermission(context.Context, *QueryPermissionRequest) (*PermissionSet, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method QueryPermission not implemented")
+func (UnimplementedRPCServer) ListPermission(context.Context, *ListPermissionRequest) (*PermissionSet, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListPermission not implemented")
 }
 func (UnimplementedRPCServer) DescribePermission(context.Context, *DescribePermissionRequest) (*Permission, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DescribePermission not implemented")
@@ -119,20 +119,20 @@ func RegisterRPCServer(s grpc.ServiceRegistrar, srv RPCServer) {
 	s.RegisterService(&RPC_ServiceDesc, srv)
 }
 
-func _RPC_QueryRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryRoleRequest)
+func _RPC_ListRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRoleRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RPCServer).QueryRole(ctx, in)
+		return srv.(RPCServer).ListRole(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: RPC_QueryRole_FullMethodName,
+		FullMethod: RPC_ListRole_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RPCServer).QueryRole(ctx, req.(*QueryRoleRequest))
+		return srv.(RPCServer).ListRole(ctx, req.(*ListRoleRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -155,20 +155,20 @@ func _RPC_DescribeRole_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RPC_QueryPermission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryPermissionRequest)
+func _RPC_ListPermission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPermissionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RPCServer).QueryPermission(ctx, in)
+		return srv.(RPCServer).ListPermission(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: RPC_QueryPermission_FullMethodName,
+		FullMethod: RPC_ListPermission_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RPCServer).QueryPermission(ctx, req.(*QueryPermissionRequest))
+		return srv.(RPCServer).ListPermission(ctx, req.(*ListPermissionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -199,16 +199,16 @@ var RPC_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*RPCServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "QueryRole",
-			Handler:    _RPC_QueryRole_Handler,
+			MethodName: "ListRole",
+			Handler:    _RPC_ListRole_Handler,
 		},
 		{
 			MethodName: "DescribeRole",
 			Handler:    _RPC_DescribeRole_Handler,
 		},
 		{
-			MethodName: "QueryPermission",
-			Handler:    _RPC_QueryPermission_Handler,
+			MethodName: "ListPermission",
+			Handler:    _RPC_ListPermission_Handler,
 		},
 		{
 			MethodName: "DescribePermission",

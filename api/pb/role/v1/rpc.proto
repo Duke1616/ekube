@@ -5,21 +5,20 @@ option go_package = "ekube/api/pb/role/v1;role";
 
 import "pb/role/v1/role.proto";
 import "pb/role/v1/permission.proto";
-
-import "mcube/pb/page/page.proto";
+import "ekube/pb/page/page.proto";
 
 // RPC 角色RPC服务
 service RPC {
-  rpc QueryRole(QueryRoleRequest) returns(RoleSet);
+  rpc ListRole(ListRoleRequest) returns(RoleSet);
   rpc DescribeRole(DescribeRoleRequest) returns(Role);
-  rpc QueryPermission(QueryPermissionRequest) returns(PermissionSet);
+  rpc ListPermission(ListPermissionRequest) returns(PermissionSet);
   rpc DescribePermission(DescribePermissionRequest) returns(Permission);
 }
 
 // QueryPermissionRequest 查询用户权限
-message QueryPermissionRequest {
+message ListPermissionRequest {
   // @gotags: json:"page"
-  infraboard.mcube.page.PageRequest page = 1;
+  ekube.page.PageRequest page = 1;
   // @gotags: json:"namespace"
   string namespace = 2;
   // @gotags: json:"username"
@@ -33,13 +32,13 @@ message QueryPermissionRequest {
 }
 
 // QueryRoleRequest 列表查询
-message QueryRoleRequest {
+message ListRoleRequest {
   // 资源范围
   // @gotags: json:"scope"
   repeated string scope = 1;
   // 分页参数
   // @gotags: json:"page"
-  infraboard.mcube.page.PageRequest page = 2;
+  ekube.page.PageRequest page = 2;
   // @gotags: json:"workspace"
   string workspace = 3;
   // @gotags: json:"namespace"
@@ -52,7 +51,7 @@ message QueryRoleRequest {
 message DescribeRoleRequest {
   // @gotags: json:"id"
   string id = 1;
-  // @gotags: json:"name,omitempty" validate:"required,lte=64"
+  // @gotags: json:"name,omitempty"
   string name = 2;
 }
 

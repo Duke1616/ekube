@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ekube.request;
+option go_package = "ekube/third_party/ekube/pb/request;request";
+
+enum UpdateMode {
+    PUT = 0;
+    PATCH = 1;
+}

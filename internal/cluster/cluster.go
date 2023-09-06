@@ -2,9 +2,9 @@ package cluster
 
 import (
 	clusterv1 "ekube/api/pb/cluster/v1"
+	"ekube/tools"
 	"github.com/emicklei/go-restful/v3"
 	"github.com/infraboard/mcube/http/request"
-	"github.com/rs/xid"
 	"time"
 
 	pb_request "github.com/infraboard/mcube/pb/request"
@@ -16,25 +16,15 @@ func NewCluster(req *clusterv1.CreateClusterRequest) (*clusterv1.Cluster, error)
 	}
 
 	return &clusterv1.Cluster{
-		Meta:   NewMeta(),
+		Meta:   tools.NewMeta(),
 		Spec:   req,
+		Info:   &clusterv1.ServerInfo{},
 		Status: &clusterv1.Status{},
 	}, nil
 }
 
-func NewMeta() *clusterv1.Meta {
-	return &clusterv1.Meta{
-		Id:         xid.New().String(),
-		CreateAt:   time.Now().UnixMicro(),
-		ServerInfo: &clusterv1.ServerInfo{},
-	}
-}
-
 func NewCreateClusterRequest() *clusterv1.CreateClusterRequest {
-	return &clusterv1.CreateClusterRequest{
-		Domain:    "default",
-		Namespace: "default",
-	}
+	return &clusterv1.CreateClusterRequest{}
 }
 
 func NewDefaultCluster() *clusterv1.Cluster {

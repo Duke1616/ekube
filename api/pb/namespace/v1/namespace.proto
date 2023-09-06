@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package ekube.namespace.v1;
+option go_package = "ekube/api/pb/namespace/v1;namespace";
+
+import "ekube/pb/meta/meta.proto";
+
+// Namespace 名称空间-项目绑定
+message Namespace {
+  // 元信息
+  // @gotags: bson:",inline" json:"meta"
+  meta.Meta meta = 1;
+  // 基础信息
+  // @gotags: json:"spec" bson:",inline"
+  CreateNamespaceRequest spec = 2;
+}
+
+message CreateNamespaceRequest {
+  // 项目名称
+  // @gotags: json:"name" bson:"name"
+  string name = 1;
+  // 项目管理员
+  // @gotags: json:"owner" bson:"owner"
+  string owner = 2;
+  // 项目绑定集群
+  // @gotags: json:"cluster_id" bson:"cluster_id"
+  string cluster_id = 3;
+  // 项目描述
+  // @gotags: json:"description" bson:"description"
+  string description = 4;
+}
+
+// NamespaceSet
+message NamespaceSet {
+  // 分页时，返回总数量
+  // @gotags: json:"total"
+  int64 total = 1;
+  // 一页的数据
+  // @gotags: json:"items"
+  repeated Namespace items = 2;
+}

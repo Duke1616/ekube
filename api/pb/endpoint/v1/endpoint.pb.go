@@ -28,22 +28,22 @@ type Endpoint struct {
 
 	// 端点名称
 	// @gotags: bson:"_id" json:"id" validate:"required,lte=64"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"required,lte=64"`
 	// 创建时间
 	// @gotags: bson:"create_at" json:"create_at,omitempty"
-	CreateAt int64 `protobuf:"varint,2,opt,name=create_at,json=createAt,proto3" json:"create_at,omitempty"`
+	CreateAt int64 `protobuf:"varint,2,opt,name=create_at,json=createAt,proto3" json:"create_at,omitempty" bson:"create_at"`
 	// 更新时间
 	// @gotags: bson:"update_at" json:"update_at,omitempty"
-	UpdateAt int64 `protobuf:"varint,3,opt,name=update_at,json=updateAt,proto3" json:"update_at,omitempty"`
+	UpdateAt int64 `protobuf:"varint,3,opt,name=update_at,json=updateAt,proto3" json:"update_at,omitempty" bson:"update_at"`
 	// 该功能属于那个服务
 	// @gotags: bson:"service_id" json:"service_id,omitempty" validate:"required,lte=64"
-	ServiceId string `protobuf:"bytes,4,opt,name=service_id,json=serviceId,proto3" json:"service_id,omitempty"`
+	ServiceId string `protobuf:"bytes,4,opt,name=service_id,json=serviceId,proto3" json:"service_id,omitempty" bson:"service_id" validate:"required,lte=64"`
 	// 服务那个版本的功能
 	// @gotags: bson:"version" json:"version,omitempty" validate:"required,lte=64"
-	Version string `protobuf:"bytes,5,opt,name=version,proto3" json:"version,omitempty"`
+	Version string `protobuf:"bytes,5,opt,name=version,proto3" json:"version,omitempty" bson:"version" validate:"required,lte=64"`
 	// 路由条目信息
 	// @gotags: bson:",inline" json:"entry" validate:"required"
-	Entry *Entry `protobuf:"bytes,6,opt,name=entry,proto3" json:"entry,omitempty"`
+	Entry *Entry `protobuf:"bytes,6,opt,name=entry,proto3" json:"entry" bson:",inline" validate:"required"`
 }
 
 func (x *Endpoint) Reset() {
@@ -128,43 +128,43 @@ type Entry struct {
 
 	// 函数名称
 	// @gotags: bson:"function_name" json:"function_name"
-	FunctionName string `protobuf:"bytes,2,opt,name=function_name,json=functionName,proto3" json:"function_name,omitempty"`
+	FunctionName string `protobuf:"bytes,2,opt,name=function_name,json=functionName,proto3" json:"function_name" bson:"function_name"`
 	// HTTP path 用于自动生成http api
 	// @gotags: bson:"path" json:"path"
-	Path string `protobuf:"bytes,3,opt,name=path,proto3" json:"path,omitempty"`
+	Path string `protobuf:"bytes,3,opt,name=path,proto3" json:"path" bson:"path"`
 	// HTTP method 用于自动生成http api
 	// @gotags: bson:"method" json:"method"
-	Method string `protobuf:"bytes,4,opt,name=method,proto3" json:"method,omitempty"`
+	Method string `protobuf:"bytes,4,opt,name=method,proto3" json:"method" bson:"method"`
 	// 资源名称
 	// @gotags: bson:"resource" json:"resource"
-	Resource string `protobuf:"bytes,5,opt,name=resource,proto3" json:"resource,omitempty"`
+	Resource string `protobuf:"bytes,5,opt,name=resource,proto3" json:"resource" bson:"resource"`
 	// 是否校验用户身份 (access_token 校验)
 	// @gotags: bson:"auth_enable" json:"auth_enable"
-	AuthEnable bool `protobuf:"varint,6,opt,name=auth_enable,json=authEnable,proto3" json:"auth_enable,omitempty"`
+	AuthEnable bool `protobuf:"varint,6,opt,name=auth_enable,json=authEnable,proto3" json:"auth_enable" bson:"auth_enable"`
 	// 验证码校验(开启双因子认证需要) (code 校验)
 	// @gotags: bson:"code_enable" json:"code_enable"
-	CodeEnable bool `protobuf:"varint,13,opt,name=code_enable,json=codeEnable,proto3" json:"code_enable,omitempty"`
+	CodeEnable bool `protobuf:"varint,13,opt,name=code_enable,json=codeEnable,proto3" json:"code_enable" bson:"code_enable"`
 	// 权限验证的模式, 支持ACL/PRBAC, 默认PRBAC
 	// @gotags: bson:"permission_mode" json:"permission_mode"
-	PermissionMode string `protobuf:"bytes,14,opt,name=permission_mode,json=permissionMode,proto3" json:"permission_mode,omitempty"`
+	PermissionMode string `protobuf:"bytes,14,opt,name=permission_mode,json=permissionMode,proto3" json:"permission_mode" bson:"permission_mode"`
 	// PRBAC模式下 开启权限校验
 	// @gotags: bson:"permission_enable" json:"permission_enable"
-	PermissionEnable bool `protobuf:"varint,7,opt,name=permission_enable,json=permissionEnable,proto3" json:"permission_enable,omitempty"`
+	PermissionEnable bool `protobuf:"varint,7,opt,name=permission_enable,json=permissionEnable,proto3" json:"permission_enable" bson:"permission_enable"`
 	// ACL模式下, 允许的通过的身份标识符, 比如角色, 用户类型之类
 	// @gotags: bson:"allow" json:"allow"
-	Allow []string `protobuf:"bytes,12,rep,name=allow,proto3" json:"allow,omitempty"`
+	Allow []string `protobuf:"bytes,12,rep,name=allow,proto3" json:"allow" bson:"allow"`
 	// 是否开启操作审计, 开启后这次操作将被记录
 	// @gotags: bson:"audit_log" json:"audit_log"
-	AuditLog bool `protobuf:"varint,9,opt,name=audit_log,json=auditLog,proto3" json:"audit_log,omitempty"`
+	AuditLog bool `protobuf:"varint,9,opt,name=audit_log,json=auditLog,proto3" json:"audit_log" bson:"audit_log"`
 	// 名称空间不能为空
 	// @gotags: bson:"required_namespace" json:"required_namespace"
-	RequiredNamespace bool `protobuf:"varint,10,opt,name=required_namespace,json=requiredNamespace,proto3" json:"required_namespace,omitempty"`
+	RequiredNamespace bool `protobuf:"varint,10,opt,name=required_namespace,json=requiredNamespace,proto3" json:"required_namespace" bson:"required_namespace"`
 	// 标签
 	// @gotags: bson:"labels" json:"labels"
-	Labels map[string]string `protobuf:"bytes,8,rep,name=labels,proto3" json:"labels,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Labels map[string]string `protobuf:"bytes,8,rep,name=labels,proto3" json:"labels" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"labels"`
 	// 扩展属性
 	// @gotags: bson:"extension" json:"extension"
-	Extension map[string]string `protobuf:"bytes,11,rep,name=extension,proto3" json:"extension,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Extension map[string]string `protobuf:"bytes,11,rep,name=extension,proto3" json:"extension" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"extension"`
 }
 
 func (x *Entry) Reset() {
@@ -296,9 +296,9 @@ type EndpointSet struct {
 	unknownFields protoimpl.UnknownFields
 
 	// @gotags: bson:"total" json:"total"
-	Total int64 `protobuf:"varint,1,opt,name=total,proto3" json:"total,omitempty"`
+	Total int64 `protobuf:"varint,1,opt,name=total,proto3" json:"total" bson:"total"`
 	// @gotags: bson:"items" json:"items"
-	Items []*Endpoint `protobuf:"bytes,2,rep,name=items,proto3" json:"items,omitempty"`
+	Items []*Endpoint `protobuf:"bytes,2,rep,name=items,proto3" json:"items" bson:"items"`
 }
 
 func (x *EndpointSet) Reset() {
@@ -355,16 +355,16 @@ type RegistryRequest struct {
 
 	// 服务的Id
 	// @gotags: json:"service_id" validate:"required"
-	ServiceId string `protobuf:"bytes,1,opt,name=service_id,json=serviceId,proto3" json:"service_id,omitempty"`
+	ServiceId string `protobuf:"bytes,1,opt,name=service_id,json=serviceId,proto3" json:"service_id" validate:"required"`
 	// 服务的版本
 	// @gotags: json:"version" validate:"required,lte=32"
-	Version string `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
+	Version string `protobuf:"bytes,2,opt,name=version,proto3" json:"version" validate:"required,lte=32"`
 	// 服务的功能
 	// @gotags: json:"entries"
-	Entries []*Entry `protobuf:"bytes,3,rep,name=entries,proto3" json:"entries,omitempty"`
+	Entries []*Entry `protobuf:"bytes,3,rep,name=entries,proto3" json:"entries"`
 	// 扩展属性
 	// @gotags: bson:"extension" json:"extension"
-	Extension map[string]string `protobuf:"bytes,15,rep,name=extension,proto3" json:"extension,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Extension map[string]string `protobuf:"bytes,15,rep,name=extension,proto3" json:"extension" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"extension"`
 }
 
 func (x *RegistryRequest) Reset() {
@@ -434,7 +434,7 @@ type RegistryResponse struct {
 	unknownFields protoimpl.UnknownFields
 
 	// @gotags: json:"message"
-	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
 }
 
 func (x *RegistryResponse) Reset() {

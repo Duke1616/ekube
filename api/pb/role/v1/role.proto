@@ -3,11 +3,12 @@ syntax = "proto3";
 package ekube.role.v1;
 option go_package = "ekube/api/pb/role/v1;role";
 import "pb/role/v1/permission.proto";
+import "ekube/pb/meta/meta.proto";
 
 message Role {
   // 元信息
   // @gotags: bson:",inline" json:"meta"
-  Meta meta = 1;
+  meta.Meta meta = 1;
   // 角色描述信息
   // @gotags: bson:",inline" json:"spec"
   CreateRoleRequest spec = 2;
@@ -16,55 +17,33 @@ message Role {
   repeated PermissionSpec permissions = 4;
 }
 
-message Meta {
-  // 唯一ID
-  // @gotags: json:"id" bson:"_id"
-  string id = 1;
-  // 录入时间
-  // @gotags: json:"create_at" bson:"create_at"
-  int64 create_at = 2;
-  // 更新时间
-  // @gotags: json:"update_at" bson:"update_at"
-  int64 update_at = 3;
-  // 更新人
-  // @gotags: json:"update_by" bson:"update_by"
-  string update_by = 4;
-}
-
 // CreateRoleRequest 创建角色请求
 message CreateRoleRequest {
-  // 所属企业空间
-  // @gotags: bson:"domain" json:"domain"
-  string workspace = 1;
-  // 所属项目
-  // @gotags: bson:"namespace" json:"namespace"
-  string namespace = 2;
   // 创建者ID
   // @gotags: bson:"create_by" json:"create_by"
-  string create_by = 3;
+  string create_by = 1;
   // 只读角色, 只读角色不能修改, 可以删除
   // @gotags: bson:"read_only" json:"read_only"
-  bool read_only = 4;
+  bool read_only = 2;
   // 角色名称
   // @gotags: bson:"name" json:"name" validate:"required,lte=30"
-  string name = 5;
+  string name = 3;
   // 角色描述
   // @gotags: bson:"description" json:"description" validate:"lte=400"
-  string description =6;
+  string description = 4;
   // 权限定义
   // @gotags: bson:"-" json:"permissions,omitempty"
-  repeated PermissionSpec specs = 7;
+  repeated PermissionSpec specs = 5;
   // 是否启用
   // @gotags: bson:"enabled" json:"enabled"
-  bool enabled = 8;
-  // 该角色的生效范围
+  bool enabled = 6;
+  // 该角色的生效范围, 全局或某个组件
   // @gotags: bson:"scope" json:"scope"
-  repeated string scope = 9;
+  string scope = 7;
   // 角色关联的其他信息，比如展示的视图
   // @gotags: bson:"labels" json:"labels" validate:"lte=400"
   map<string,string> labels =15;
 }
-
 
 
 message RoleSet {

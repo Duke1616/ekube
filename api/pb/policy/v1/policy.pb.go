@@ -29,13 +29,13 @@ type Policy struct {
 
 	// 元信息
 	// @gotags: bson:",inline" json:"meta"
-	Meta *Meta `protobuf:"bytes,1,opt,name=meta,proto3" json:"meta,omitempty"`
+	Meta *Meta `protobuf:"bytes,1,opt,name=meta,proto3" json:"meta" bson:",inline"`
 	// 策略定义
 	// @gotags: bson:",inline" json:"spec"
-	Spec *CreatePolicyRequest `protobuf:"bytes,2,opt,name=spec,proto3" json:"spec,omitempty"`
+	Spec *CreatePolicyRequest `protobuf:"bytes,2,opt,name=spec,proto3" json:"spec" bson:",inline"`
 	// 关联的角色对象
 	// @gotags: bson:"-" json:"role,omitempty"
-	Role *v1.Role `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty"`
+	Role *v1.Role `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty" bson:"-"`
 }
 
 func (x *Policy) Reset() {
@@ -99,34 +99,34 @@ type CreatePolicyRequest struct {
 
 	// 创建者
 	// @gotags: bson:"create_by" json:"create_by"
-	CreateBy string `protobuf:"bytes,1,opt,name=create_by,json=createBy,proto3" json:"create_by,omitempty"`
+	CreateBy string `protobuf:"bytes,1,opt,name=create_by,json=createBy,proto3" json:"create_by" bson:"create_by"`
 	// 策略所属企业空间
 	// @gotags: bson:"domain" json:"domain"
-	Workspace string `protobuf:"bytes,2,opt,name=workspace,proto3" json:"workspace,omitempty"`
+	Workspace string `protobuf:"bytes,2,opt,name=workspace,proto3" json:"domain" bson:"domain"`
 	// 所属项目
 	// @gotags: bson:"namespace" json:"namespace" validate:"lte=120"
-	Namespace string `protobuf:"bytes,3,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	Namespace string `protobuf:"bytes,3,opt,name=namespace,proto3" json:"namespace" bson:"namespace" validate:"lte=120"`
 	// 用户Id
 	// @gotags: bson:"user_id" json:"user_id" validate:"required,lte=120"
-	UserId string `protobuf:"bytes,4,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId string `protobuf:"bytes,4,opt,name=user_id,json=userId,proto3" json:"user_id" bson:"user_id" validate:"required,lte=120"`
 	// 角色Id
 	// @gotags: bson:"role_id" json:"role_id" validate:"required,lte=40"
-	RoleId string `protobuf:"bytes,5,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
+	RoleId string `protobuf:"bytes,5,opt,name=role_id,json=roleId,proto3" json:"role_id" bson:"role_id" validate:"required,lte=40"`
 	// 该角色的生效范围
 	// @gotags: bson:"scope" json:"scope"
-	Scope []string `protobuf:"bytes,6,rep,name=scope,proto3" json:"scope,omitempty"`
+	Scope string `protobuf:"bytes,6,opt,name=scope,proto3" json:"scope" bson:"scope"`
 	// 策略过期时间
 	// @gotags: bson:"expired_time" json:"expired_time"
-	ExpiredTime int64 `protobuf:"varint,7,opt,name=expired_time,json=expiredTime,proto3" json:"expired_time,omitempty"`
+	ExpiredTime int64 `protobuf:"varint,7,opt,name=expired_time,json=expiredTime,proto3" json:"expired_time" bson:"expired_time"`
 	// 启用该策略
 	// @gotags: bson:"enabled" json:"enabled"
-	Enabled bool `protobuf:"varint,8,opt,name=enabled,proto3" json:"enabled,omitempty"`
+	Enabled bool `protobuf:"varint,8,opt,name=enabled,proto3" json:"enabled" bson:"enabled"`
 	// 扩展属性
 	// @gotags: bson:"extra" json:"extra"
-	Extra map[string]string `protobuf:"bytes,10,rep,name=extra,proto3" json:"extra,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Extra map[string]string `protobuf:"bytes,10,rep,name=extra,proto3" json:"extra" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"extra"`
 	// 标签
 	// @gotags: bson:"labels" json:"labels"
-	Labels map[string]string `protobuf:"bytes,11,rep,name=labels,proto3" json:"labels,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Labels map[string]string `protobuf:"bytes,11,rep,name=labels,proto3" json:"labels" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"labels"`
 }
 
 func (x *CreatePolicyRequest) Reset() {
@@ -196,11 +196,11 @@ func (x *CreatePolicyRequest) GetRoleId() string {
 	return ""
 }
 
-func (x *CreatePolicyRequest) GetScope() []string {
+func (x *CreatePolicyRequest) GetScope() string {
 	if x != nil {
 		return x.Scope
 	}
-	return nil
+	return ""
 }
 
 func (x *CreatePolicyRequest) GetExpiredTime() int64 {
@@ -238,16 +238,16 @@ type Meta struct {
 
 	// 唯一ID
 	// @gotags: json:"id" bson:"_id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id"`
 	// 录入时间
 	// @gotags: json:"create_at" bson:"create_at"
-	CreateAt int64 `protobuf:"varint,2,opt,name=create_at,json=createAt,proto3" json:"create_at,omitempty"`
+	CreateAt int64 `protobuf:"varint,2,opt,name=create_at,json=createAt,proto3" json:"create_at" bson:"create_at"`
 	// 更新时间
 	// @gotags: json:"update_at" bson:"update_at"
-	UpdateAt int64 `protobuf:"varint,3,opt,name=update_at,json=updateAt,proto3" json:"update_at,omitempty"`
+	UpdateAt int64 `protobuf:"varint,3,opt,name=update_at,json=updateAt,proto3" json:"update_at" bson:"update_at"`
 	// 更新人
 	// @gotags: json:"update_by" bson:"update_by"
-	UpdateBy string `protobuf:"bytes,4,opt,name=update_by,json=updateBy,proto3" json:"update_by,omitempty"`
+	UpdateBy string `protobuf:"bytes,4,opt,name=update_by,json=updateBy,proto3" json:"update_by" bson:"update_by"`
 }
 
 func (x *Meta) Reset() {
@@ -337,7 +337,7 @@ var file_pb_policy_v1_policy_proto_rawDesc = []byte{
 	0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06,
 	0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x17, 0x0a, 0x07, 0x72, 0x6f, 0x6c, 0x65, 0x5f, 0x69,
 	0x64, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x72, 0x6f, 0x6c, 0x65, 0x49, 0x64, 0x12,
-	0x14, 0x0a, 0x05, 0x73, 0x63, 0x6f, 0x70, 0x65, 0x18, 0x06, 0x20, 0x03, 0x28, 0x09, 0x52, 0x05,
+	0x14, 0x0a, 0x05, 0x73, 0x63, 0x6f, 0x70, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05,
 	0x73, 0x63, 0x6f, 0x70, 0x65, 0x12, 0x21, 0x0a, 0x0c, 0x65, 0x78, 0x70, 0x69, 0x72, 0x65, 0x64,
 	0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x07, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0b, 0x65, 0x78, 0x70,
 	0x69, 0x72, 0x65, 0x64, 0x54, 0x69, 0x6d, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x65, 0x6e, 0x61, 0x62,

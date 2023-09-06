@@ -4,7 +4,7 @@
 // - protoc             v3.21.2
 // source: pb/workspace/v1/rpc.proto
 
-package v1
+package workspace
 
 import (
 	context "context"
@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	RPC_ListWorkspace_FullMethodName     = "/workspace.v1.RPC/ListWorkspace"
-	RPC_DescribeWorkspace_FullMethodName = "/workspace.v1.RPC/DescribeWorkspace"
+	RPC_ListWorkspace_FullMethodName     = "/ekube.workspace.v1.RPC/ListWorkspace"
+	RPC_DescribeWorkspace_FullMethodName = "/ekube.workspace.v1.RPC/DescribeWorkspace"
 )
 
 // RPCClient is the client API for RPC service.
@@ -133,7 +133,7 @@ func _RPC_DescribeWorkspace_Handler(srv interface{}, ctx context.Context, dec fu
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var RPC_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "workspace.v1.RPC",
+	ServiceName: "ekube.workspace.v1.RPC",
 	HandlerType: (*RPCServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

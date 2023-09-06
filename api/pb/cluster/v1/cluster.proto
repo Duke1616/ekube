@@ -3,36 +3,22 @@ syntax = "proto3";
 package ekube.cluster.v1;
 option go_package = "ekube/pb/api/cluster/v1;cluster";
 
+import "ekube/pb/meta/meta.proto";
 
 // Cluster k8s集群相关信息
 message Cluster {
   // 集群状态
   // @gotags: json:"meta" bson:",inline"
-  Meta meta = 1;
+  meta.Meta meta = 1;
   // 基础信息
   // @gotags: json:"spec" bson:",inline"
   CreateClusterRequest spec = 2;
+  // 集群信息
+  // @gotags: json:"info" bson:",inline"
+  ServerInfo info = 3;
   // 集群状态
   // @gotags: json:"status" bson:",inline"
-  Status status = 3;
-}
-
-message Meta {
-  // 唯一ID
-  // @gotags: json:"id" bson:"_id"
-  string id = 1;
-  // 录入时间
-  // @gotags: json:"create_at" bson:"create_at"
-  int64 create_at = 2;
-  // 更新时间
-  // @gotags: json:"update_at" bson:"update_at"
-  int64 update_at = 3;
-  // 更新人
-  // @gotags: json:"update_by" bson:"update_by"
-  string update_by = 4;
-  // 集群相关信息
-  // @gotags: json:"server_info" bson:"server_info"
-  ServerInfo server_info = 8;
+  Status status = 4;
 }
 
 message ServerInfo {
@@ -60,33 +46,27 @@ message Status {
 }
 
 message CreateClusterRequest {
-  // 集群所属域
-  // @gotags: json:"domain" form:"domain" bson:"domain"
-  string domain = 1;
-  // 集群所属空间
-  // @gotags: json:"namespace" form:"namespace" bson:"namespace"
-  string namespace = 2;
   // 创建人
   // @gotags: json:"create_by" form:"create_by" bson:"create_by"
-  string create_by = 3;
+  string create_by = 1;
   // 集群提供商
   // @gotags: json:"provider" bson:"provider" form:"provider" validate:"required"
-  string provider = 4;
+  string provider = 2;
   // 集群所处地域
   // @gotags: json:"region" bson:"region" form:"region" validate:"required"
-  string region = 5;
+  string region = 3;
   // 名称
   // @gotags: json:"name" bson:"name" form:"name" validate:"required"
-  string name = 6;
+  string name = 4;
   // 集群客户端访问凭证
   // @gotags: json:"kube_config" bson:"kube_config" form:"kube_config" validate:"required"
-  string kube_config = 7;
+  string kube_config = 5;
   // 集群描述
   // @gotags: json:"description" form:"description" bson:"description"
-  string description = 8;
+  string description = 6;
   // 集群标签, env=prod
   // @gotags: json:"labels" form:"labels" bson:"labels"
-  map<string, string> labels = 9;
+  map<string, string> labels = 7;
 }
 
 // ClusterSet
