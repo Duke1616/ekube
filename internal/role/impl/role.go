@@ -19,7 +19,7 @@ func (s *service) CreateRole(ctx context.Context, req *v1.CreateRoleRequest) (*v
 		Permissions: []*v1.PermissionSpec{},
 	}
 
-	r.Meta.Id = tools.FnvHash(fmt.Sprintf("%s@%s", r.Spec.Name, r.Spec.Scope))
+	r.Meta.Id = tools.FnvHash(r.FullName())
 
 	// 保存角色信息
 	err := s.data.Insert(ctx, r)

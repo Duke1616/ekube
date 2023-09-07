@@ -24,3 +24,23 @@ func NewListWorkspaceRequest() *v1.ListWorkspaceRequest {
 		Page: tools.NewDefaultPageRequest(),
 	}
 }
+
+func NewWorkspaceSet() *v1.WorkspaceSet {
+	return &v1.WorkspaceSet{
+		Items: []*v1.Workspace{},
+	}
+}
+
+func NewDescribeWorkspaceRequestByName(name string) *v1.DescribeWorkspaceRequest {
+	return &v1.DescribeWorkspaceRequest{
+		DescribeBy: v1.DESCRIBE_BY_NANE,
+		Name:       name,
+	}
+}
+
+func NewDescribeWorkspaceRequestById(id string) *v1.DescribeWorkspaceRequest {
+	return &v1.DescribeWorkspaceRequest{
+		DescribeBy: v1.DESCRIBE_BY_ID,
+		Id:         id,
+	}
+}

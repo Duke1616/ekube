@@ -5,70 +5,62 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98931868-6569-4e33-b7fa-dc484e09df39" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/api/pb/namespace/v1/namespace.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/pb/namespace/v1/rpc.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/pb/namespace/v1/validate.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/pb/role/v1/permission.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/pb/role/v1/role.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/pb/role/v1/validate.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/pb/workspace/v1/validate.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/namespace/api/http.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/namespace/api/namespace.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/namespace/data/data.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/namespace/data/namespace.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/namespace/impl/impl.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/namespace/impl/namespace.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/namespace/interface.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/namespace/namespace.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/proxy/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/role/data/data.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/role/data/permission.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/role/data/role.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/role/impl/permission.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/role/interface.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/role/permissions.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/role/role.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/workspace/api/workspace.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/workspace/data/workspace.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/third_party/ekube/pb/meta/meta.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/third_party/ekube/pb/page/page.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/third_party/ekube/pb/request/request.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/meta.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/page.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/pb/namespace/v1/namespace.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/pb/policy/v1/permission.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/pb/policy/v1/policy.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/pb/policy/v1/validate.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/pb/workspace/v1/workspace.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/policy/api/permission.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/policy/data/data.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/policy/data/policy.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/policy/impl/permission.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/policy/interface.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/policy/policy.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/pb/cluster/v1/cluster.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/cluster/v1/cluster.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/pb/cluster/v1/cluster.proto" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/cluster/v1/cluster.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/pb/cluster/v1/rpc.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/cluster/v1/rpc.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/pb/endpoint/v1/endpoint.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/endpoint/v1/endpoint.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/pb/endpoint/v1/rpc.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/endpoint/v1/rpc.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/pb/namespace/namespace.proto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/pb/cluster/v1/validate.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/cluster/v1/validate.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/pb/namespace/v1/namespace.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/namespace/v1/namespace.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/pb/namespace/v1/namespace.proto" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/namespace/v1/namespace.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/pb/namespace/v1/rpc.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/namespace/v1/rpc.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/pb/namespace/v1/rpc.proto" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/namespace/v1/rpc.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/pb/namespace/v1/validate.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/namespace/v1/validate.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/pb/policy/v1/policy.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/policy/v1/policy.pb.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/pb/policy/v1/policy.proto" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/policy/v1/policy.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/pb/policy/v1/rpc.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/policy/v1/rpc.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/pb/policy/v1/rpc.proto" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/policy/v1/rpc.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/pb/role/v1/permission.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/role/v1/permission.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/pb/role/v1/permission.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/role/v1/permission.pb.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/pb/role/v1/permission.proto" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/role/v1/permission.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/pb/role/v1/role.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/role/v1/role.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/pb/role/v1/role.proto" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/role/v1/role.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/pb/role/v1/rpc.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/role/v1/rpc.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/pb/role/v1/rpc.proto" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/role/v1/rpc.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/pb/role/v1/rpc_grpc.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/role/v1/rpc_grpc.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/pb/role/v1/role.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/role/v1/role.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/pb/workspace/v1/rpc.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/workspace/v1/rpc.pb.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/pb/workspace/v1/rpc.proto" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/workspace/v1/rpc.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/pb/workspace/v1/rpc_grpc.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/workspace/v1/rpc_grpc.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/pb/workspace/v1/workspace.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/workspace/v1/workspace.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/pb/workspace/v1/workspace.proto" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/workspace/v1/workspace.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/pb/workspace/v1/validate.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/workspace/v1/validate.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/all/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/all/api.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/all/grpc.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/all/grpc.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/all/internal.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/all/internal.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/cluster/cluster.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/cluster/cluster.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/project/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/internal/namespace/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/role/api/http.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/role/api/http.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/role/api/role.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/role/api/role.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/role/impl/impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/role/impl/impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/cluster/impl/cluster.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/cluster/impl/cluster.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/cluster/interface.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/cluster/interface.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/endpoint/data/endpoint.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/endpoint/data/endpoint.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/endpoint/impl/endpoint.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/endpoint/impl/endpoint.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/namespace/data/namespace.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/namespace/data/namespace.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/namespace/impl/impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/namespace/impl/impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/namespace/impl/namespace.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/namespace/impl/namespace.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/namespace/namespace.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/namespace/namespace.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/policy/api/http.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/policy/api/http.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/policy/api/policy.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/policy/api/policy.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/policy/impl/impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/policy/impl/impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/policy/impl/policy.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/policy/impl/policy.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/role/data/role.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/role/data/role.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/role/impl/role.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/role/impl/role.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/role/permissions.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/role/permissions.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/role/role.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/role/role.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/workspace/api/http.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/workspace/api/http.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/workspace/api/workspace.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/workspace/api/workspace.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/workspace/data/workspace.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/workspace/data/workspace.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/workspace/impl/impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/workspace/impl/impl.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/workspace/impl/workspace.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/workspace/impl/workspace.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/workspace/interface.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/workspace/interface.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/workspace/workspace.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/workspace/workspace.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/hash.go" beforeDir="false" afterPath="$PROJECT_DIR$/tools/hash.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,11 +140,11 @@
       <recent name="$PROJECT_DIR$/pkg/controller" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/api/pb/policy/v1" />
       <recent name="$PROJECT_DIR$/api/pb/namespace/v1" />
       <recent name="$PROJECT_DIR$/api/pb/workspace/v1" />
       <recent name="$PROJECT_DIR$/api/pb/endpoint/v1" />
       <recent name="$PROJECT_DIR$/api/pb/role" />
-      <recent name="$PROJECT_DIR$/api/pb/role/v1" />
     </key>
   </component>
   <component name="RunManager" selected="Go 构建.go build ekube">
@@ -247,6 +239,11 @@
           <url>file://$PROJECT_DIR$/pkg/k8s/terminal/types.go</url>
           <line>5</line>
           <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/internal/cluster/api/cluster.go</url>
+          <line>28</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

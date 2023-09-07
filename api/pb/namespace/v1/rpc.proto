@@ -19,14 +19,33 @@ message ListNamespaceRequest {
   // @gotags: json:"page"
   ekube.page.PageRequest page = 1;
   // 根据用户权限过滤展示
-  // @gotags: json:"user_id"
-  string user_id = 2;
+  // @gotags: json:"cluster_id"
+  string cluster_id = 2;
+  // 根据用户权限过滤展示
+  // @gotags: json:"workspace"
+  string workspace = 3;
+}
+
+enum DESCRIBE_BY {
+  // 通过Id
+  ID = 0;
+  // 通过名称
+  NANE = 1;
 }
 
 message DescribeNamespaceRequest {
+  // 获取详情的方式
+  // @gotags: json:"describe_by"
+  DESCRIBE_BY describe_by = 1;
   // 集群Id
   // @gotags: json:"id"
-  string id = 1;
+  string id = 2;
+  // 集群Id
+  // @gotags: json:"name"
+  string name = 3;
+  // 企业空间
+  // @gotags: json:"workspace"
+  string workspace = 4;
 }
 
 message UpdateNamespaceRequest {

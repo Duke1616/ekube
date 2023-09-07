@@ -5,6 +5,7 @@ import (
 	v1 "ekube/api/pb/endpoint/v1"
 	"ekube/internal/endpoint"
 	"ekube/tools"
+	"github.com/infraboard/mcube/exception"
 	"github.com/infraboard/mcube/types/ftime"
 )
 
@@ -14,8 +15,16 @@ func (s *service) DeleteEndpoint(ctx context.Context, request *v1.DeleteEndpoint
 }
 
 func (s *service) DescribeEndpoint(ctx context.Context, req *v1.DescribeEndpointRequest) (*v1.Endpoint, error) {
-	//TODO implement me
-	panic("implement me")
+	if err := req.Validate(); err != nil {
+		return nil, exception.NewBadRequest(err.Error())
+	}
+
+	resp, err := s.data.Get(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	return resp, nil
 }
 
 func (s *service) ListEndpoints(ctx context.Context, req *v1.ListEndpointRequest) (*v1.EndpointSet, error) {

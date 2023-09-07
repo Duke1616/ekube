@@ -20,3 +20,24 @@ func NewListNamespaceRequest() *v1.ListNamespaceRequest {
 		Page: tools.NewDefaultPageRequest(),
 	}
 }
+
+func NewNamespaceSet() *v1.NamespaceSet {
+	return &v1.NamespaceSet{
+		Items: []*v1.Namespace{},
+	}
+}
+
+func NewDescribeNamespaceRequestByName(namespace, workspace string) *v1.DescribeNamespaceRequest {
+	return &v1.DescribeNamespaceRequest{
+		DescribeBy: v1.DESCRIBE_BY_NANE,
+		Name:       namespace,
+		Workspace:  workspace,
+	}
+}
+
+func NewDescribeNamespaceRequestById(id string) *v1.DescribeNamespaceRequest {
+	return &v1.DescribeNamespaceRequest{
+		DescribeBy: v1.DESCRIBE_BY_ID,
+		Id:         id,
+	}
+}

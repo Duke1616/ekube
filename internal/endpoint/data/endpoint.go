@@ -30,3 +30,22 @@ func (s *Data) InsertMany(ctx context.Context, endpoints []*v1.Endpoint) error {
 	}
 	return nil
 }
+
+func (s *Data) Get(ctx context.Context, req *v1.DescribeEndpointRequest) (*v1.Endpoint, error) {
+	filter := bson.M{}
+	if req.Id != "" {
+		filter["_id"] = req.Id
+	}
+
+	resp := &v1.Endpoint{}
+
+	if err := s.col.FindOne(ctx, filter).Decode(resp); err != nil {
+		if err == mongo.ErrNoDocuments {
+			return nil, exception.NewNotFound("endpoint %s not found", req)
+		}
+
+		return nil, exception.NewInternalServerError("find endpoint %s error, %s", req.Id, err)
+	}
+
+	return resp, nil
+}

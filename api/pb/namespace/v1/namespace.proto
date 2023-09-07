@@ -17,17 +17,23 @@ message Namespace {
 
 message CreateNamespaceRequest {
   // 项目名称
-  // @gotags: json:"name" bson:"name"
+  // @gotags: json:"name" bson:"name" validate:"required,lte=64"
   string name = 1;
+  // 项目别名 TODO 对应集群namespace
+  // @gotags: json:"alias" bson:"alias" validate:"required,lte=64"
+  string alias = 2;
   // 项目管理员
   // @gotags: json:"owner" bson:"owner"
-  string owner = 2;
+  string owner = 3;
+  // 项目绑定企业空间
+  // @gotags: json:"workspace" bson:"workspace" validate:"required,lte=64"
+  string workspace = 4;
   // 项目绑定集群
-  // @gotags: json:"cluster_id" bson:"cluster_id"
-  string cluster_id = 3;
+  // @gotags: json:"cluster_id" bson:"cluster_id" validate:"required,lte=64"
+  string cluster_id = 5;
   // 项目描述
   // @gotags: json:"description" bson:"description"
-  string description = 4;
+  string description = 6;
 }
 
 // NamespaceSet

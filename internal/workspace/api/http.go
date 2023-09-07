@@ -57,6 +57,18 @@ func (h *handler) Registry(ws *restful.WebService) {
 		Writes(v1.WorkspaceSet{}).
 		Returns(200, "OK", v1.WorkspaceSet{}).
 		Returns(404, "Not Found", nil))
+
+	ws.Route(ws.GET("/{id}").To(h.DescribeWorkspace).
+		Doc("查询企业空间详情").
+		Param(ws.PathParameter("id", "identifier of the secret").DataType("string")).
+		Metadata(restfulspec.KeyOpenAPITags, tags).
+		Metadata(label.Resource, h.Name()).
+		Metadata(label.Action, label.Get.Value()).
+		Metadata(label.Auth, label.Enable).
+		Metadata(label.Permission, label.Enable).
+		Writes(v1.Workspace{}).
+		Returns(200, "OK", v1.Workspace{}).
+		Returns(404, "Not Found", nil))
 }
 
 func init() {

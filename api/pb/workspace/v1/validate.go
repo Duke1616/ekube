@@ -9,3 +9,7 @@ var (
 func (req *CreateWorkspaceRequest) Validate() error {
 	return validate.Struct(req)
 }
+
+func (req *ListWorkspaceRequest) Validate() error {
+	return validate.Struct(req)
+}

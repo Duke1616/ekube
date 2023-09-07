@@ -34,3 +34,14 @@ func (h *handler) ListWorkspace(r *restful.Request, w *restful.Response) {
 
 	response.Success(w, set)
 }
+
+func (h *handler) DescribeWorkspace(r *restful.Request, w *restful.Response) {
+	req := workspace.NewDescribeWorkspaceRequestById(r.PathParameter("id"))
+	set, err := h.workspace.DescribeWorkspace(r.Request.Context(), req)
+	if err != nil {
+		response.Failed(w, err)
+		return
+	}
+
+	response.Success(w, set)
+}

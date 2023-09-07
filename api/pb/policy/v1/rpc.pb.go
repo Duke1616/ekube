@@ -7,9 +7,12 @@
 package policy
 
 import (
+	v1 "ekube/api/pb/role/v1"
+	page "ekube/third_party/ekube/pb/page"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
+	sync "sync"
 )
 
 const (
@@ -19,24 +22,411 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type DESCRIBE_BY int32
+
+const (
+	// 通过Id
+	DESCRIBE_BY_ID DESCRIBE_BY = 0
+	// 通过名称
+	DESCRIBE_BY_NANE DESCRIBE_BY = 1
+)
+
+// Enum value maps for DESCRIBE_BY.
+var (
+	DESCRIBE_BY_name = map[int32]string{
+		0: "ID",
+		1: "NANE",
+	}
+	DESCRIBE_BY_value = map[string]int32{
+		"ID":   0,
+		"NANE": 1,
+	}
+)
+
+func (x DESCRIBE_BY) Enum() *DESCRIBE_BY {
+	p := new(DESCRIBE_BY)
+	*p = x
+	return p
+}
+
+func (x DESCRIBE_BY) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (DESCRIBE_BY) Descriptor() protoreflect.EnumDescriptor {
+	return file_pb_policy_v1_rpc_proto_enumTypes[0].Descriptor()
+}
+
+func (DESCRIBE_BY) Type() protoreflect.EnumType {
+	return &file_pb_policy_v1_rpc_proto_enumTypes[0]
+}
+
+func (x DESCRIBE_BY) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use DESCRIBE_BY.Descriptor instead.
+func (DESCRIBE_BY) EnumDescriptor() ([]byte, []int) {
+	return file_pb_policy_v1_rpc_proto_rawDescGZIP(), []int{0}
+}
+
+type ListPolicyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// 分页
+	// @gotags: json:"page"
+	Page *page.PageRequest `protobuf:"bytes,1,opt,name=page,proto3" json:"page"`
+	// 策略所属企业空间
+	// @gotags: json:"workspace"
+	Workspace string `protobuf:"bytes,2,opt,name=workspace,proto3" json:"workspace"`
+	// 用户空间
+	// @gotags: json:"namespace"
+	Namespace string `protobuf:"bytes,3,opt,name=namespace,proto3" json:"namespace"`
+	// 用户名称
+	// @gotags: json:"username"
+	Username string `protobuf:"bytes,4,opt,name=username,proto3" json:"username"`
+	// 用户角色
+	// @gotags: json:"role_id"
+	RoleId string `protobuf:"bytes,5,opt,name=role_id,json=roleId,proto3" json:"role_id"`
+	// 是否查询角色相关信息
+	// @gotags: json:"with_role"
+	WithRole bool `protobuf:"varint,6,opt,name=with_role,json=withRole,proto3" json:"with_role"`
+	// 是否查询空间相关信息
+	// @gotags: json:"with_namespace"
+	WithNamespace bool `protobuf:"varint,7,opt,name=with_namespace,json=withNamespace,proto3" json:"with_namespace"`
+}
+
+func (x *ListPolicyRequest) Reset() {
+	*x = ListPolicyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pb_policy_v1_rpc_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListPolicyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListPolicyRequest) ProtoMessage() {}
+
+func (x *ListPolicyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pb_policy_v1_rpc_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListPolicyRequest.ProtoReflect.Descriptor instead.
+func (*ListPolicyRequest) Descriptor() ([]byte, []int) {
+	return file_pb_policy_v1_rpc_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *ListPolicyRequest) GetPage() *page.PageRequest {
+	if x != nil {
+		return x.Page
+	}
+	return nil
+}
+
+func (x *ListPolicyRequest) GetWorkspace() string {
+	if x != nil {
+		return x.Workspace
+	}
+	return ""
+}
+
+func (x *ListPolicyRequest) GetNamespace() string {
+	if x != nil {
+		return x.Namespace
+	}
+	return ""
+}
+
+func (x *ListPolicyRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *ListPolicyRequest) GetRoleId() string {
+	if x != nil {
+		return x.RoleId
+	}
+	return ""
+}
+
+func (x *ListPolicyRequest) GetWithRole() bool {
+	if x != nil {
+		return x.WithRole
+	}
+	return false
+}
+
+func (x *ListPolicyRequest) GetWithNamespace() bool {
+	if x != nil {
+		return x.WithNamespace
+	}
+	return false
+}
+
+type DescribePolicyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// 获取详情的方式
+	// @gotags: json:"describe_by"
+	DescribeBy DESCRIBE_BY `protobuf:"varint,1,opt,name=describe_by,json=describeBy,proto3,enum=ekube.policy.v1.DESCRIBE_BY" json:"describe_by"`
+	// 集群Id
+	// @gotags: json:"id"
+	Id string `protobuf:"bytes,2,opt,name=id,proto3" json:"id"`
+}
+
+func (x *DescribePolicyRequest) Reset() {
+	*x = DescribePolicyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pb_policy_v1_rpc_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DescribePolicyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DescribePolicyRequest) ProtoMessage() {}
+
+func (x *DescribePolicyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pb_policy_v1_rpc_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DescribePolicyRequest.ProtoReflect.Descriptor instead.
+func (*DescribePolicyRequest) Descriptor() ([]byte, []int) {
+	return file_pb_policy_v1_rpc_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *DescribePolicyRequest) GetDescribeBy() DESCRIBE_BY {
+	if x != nil {
+		return x.DescribeBy
+	}
+	return DESCRIBE_BY_ID
+}
+
+func (x *DescribePolicyRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type UpdatePolicyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *UpdatePolicyRequest) Reset() {
+	*x = UpdatePolicyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pb_policy_v1_rpc_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdatePolicyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdatePolicyRequest) ProtoMessage() {}
+
+func (x *UpdatePolicyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pb_policy_v1_rpc_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdatePolicyRequest.ProtoReflect.Descriptor instead.
+func (*UpdatePolicyRequest) Descriptor() ([]byte, []int) {
+	return file_pb_policy_v1_rpc_proto_rawDescGZIP(), []int{2}
+}
+
+type DeletePolicyRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// 删除workspace
+	// @gotags: json:"id"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
+}
+
+func (x *DeletePolicyRequest) Reset() {
+	*x = DeletePolicyRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pb_policy_v1_rpc_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeletePolicyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeletePolicyRequest) ProtoMessage() {}
+
+func (x *DeletePolicyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pb_policy_v1_rpc_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeletePolicyRequest.ProtoReflect.Descriptor instead.
+func (*DeletePolicyRequest) Descriptor() ([]byte, []int) {
+	return file_pb_policy_v1_rpc_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *DeletePolicyRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
 var File_pb_policy_v1_rpc_proto protoreflect.FileDescriptor
 
 var file_pb_policy_v1_rpc_proto_rawDesc = []byte{
 	0x0a, 0x16, 0x70, 0x62, 0x2f, 0x70, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x2f, 0x76, 0x31, 0x2f, 0x72,
 	0x70, 0x63, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0f, 0x65, 0x6b, 0x75, 0x62, 0x65, 0x2e,
-	0x70, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x2e, 0x76, 0x31, 0x42, 0x1f, 0x5a, 0x1d, 0x65, 0x6b, 0x75,
+	0x70, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x2e, 0x76, 0x31, 0x1a, 0x19, 0x70, 0x62, 0x2f, 0x70, 0x6f,
+	0x6c, 0x69, 0x63, 0x79, 0x2f, 0x76, 0x31, 0x2f, 0x70, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1b, 0x70, 0x62, 0x2f, 0x72, 0x6f, 0x6c, 0x65, 0x2f, 0x76, 0x31,
+	0x2f, 0x70, 0x65, 0x72, 0x6d, 0x69, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x1a, 0x1d, 0x70, 0x62, 0x2f, 0x70, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x2f, 0x76, 0x31, 0x2f,
+	0x70, 0x65, 0x72, 0x6d, 0x69, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x1a, 0x18, 0x65, 0x6b, 0x75, 0x62, 0x65, 0x2f, 0x70, 0x62, 0x2f, 0x70, 0x61, 0x67, 0x65, 0x2f,
+	0x70, 0x61, 0x67, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xf5, 0x01, 0x0a, 0x11, 0x4c,
+	0x69, 0x73, 0x74, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x2b, 0x0a, 0x04, 0x70, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17,
+	0x2e, 0x65, 0x6b, 0x75, 0x62, 0x65, 0x2e, 0x70, 0x61, 0x67, 0x65, 0x2e, 0x50, 0x61, 0x67, 0x65,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x04, 0x70, 0x61, 0x67, 0x65, 0x12, 0x1c, 0x0a,
+	0x09, 0x77, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x09, 0x77, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x6e,
+	0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09,
+	0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65,
+	0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65,
+	0x72, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x17, 0x0a, 0x07, 0x72, 0x6f, 0x6c, 0x65, 0x5f, 0x69, 0x64,
+	0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x72, 0x6f, 0x6c, 0x65, 0x49, 0x64, 0x12, 0x1b,
+	0x0a, 0x09, 0x77, 0x69, 0x74, 0x68, 0x5f, 0x72, 0x6f, 0x6c, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28,
+	0x08, 0x52, 0x08, 0x77, 0x69, 0x74, 0x68, 0x52, 0x6f, 0x6c, 0x65, 0x12, 0x25, 0x0a, 0x0e, 0x77,
+	0x69, 0x74, 0x68, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x18, 0x07, 0x20,
+	0x01, 0x28, 0x08, 0x52, 0x0d, 0x77, 0x69, 0x74, 0x68, 0x4e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61,
+	0x63, 0x65, 0x22, 0x66, 0x0a, 0x15, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x50, 0x6f,
+	0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x3d, 0x0a, 0x0b, 0x64,
+	0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x5f, 0x62, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e,
+	0x32, 0x1c, 0x2e, 0x65, 0x6b, 0x75, 0x62, 0x65, 0x2e, 0x70, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x2e,
+	0x76, 0x31, 0x2e, 0x44, 0x45, 0x53, 0x43, 0x52, 0x49, 0x42, 0x45, 0x5f, 0x42, 0x59, 0x52, 0x0a,
+	0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x42, 0x79, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x15, 0x0a, 0x13, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x22, 0x25, 0x0a, 0x13, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63,
+	0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x2a, 0x1f, 0x0a, 0x0b, 0x44, 0x45, 0x53, 0x43,
+	0x52, 0x49, 0x42, 0x45, 0x5f, 0x42, 0x59, 0x12, 0x06, 0x0a, 0x02, 0x49, 0x44, 0x10, 0x00, 0x12,
+	0x08, 0x0a, 0x04, 0x4e, 0x41, 0x4e, 0x45, 0x10, 0x01, 0x32, 0xfd, 0x01, 0x0a, 0x03, 0x52, 0x50,
+	0x43, 0x12, 0x4c, 0x0a, 0x0a, 0x4c, 0x69, 0x73, 0x74, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x12,
+	0x22, 0x2e, 0x65, 0x6b, 0x75, 0x62, 0x65, 0x2e, 0x70, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x2e, 0x76,
+	0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x1a, 0x2e, 0x65, 0x6b, 0x75, 0x62, 0x65, 0x2e, 0x70, 0x6f, 0x6c, 0x69,
+	0x63, 0x79, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x53, 0x65, 0x74, 0x12,
+	0x51, 0x0a, 0x0e, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x50, 0x6f, 0x6c, 0x69, 0x63,
+	0x79, 0x12, 0x26, 0x2e, 0x65, 0x6b, 0x75, 0x62, 0x65, 0x2e, 0x70, 0x6f, 0x6c, 0x69, 0x63, 0x79,
+	0x2e, 0x76, 0x31, 0x2e, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x50, 0x6f, 0x6c, 0x69,
+	0x63, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x17, 0x2e, 0x65, 0x6b, 0x75, 0x62,
+	0x65, 0x2e, 0x70, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x6f, 0x6c, 0x69,
+	0x63, 0x79, 0x12, 0x55, 0x0a, 0x0f, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x50, 0x65, 0x72, 0x6d, 0x69,
+	0x73, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x27, 0x2e, 0x65, 0x6b, 0x75, 0x62, 0x65, 0x2e, 0x70, 0x6f,
+	0x6c, 0x69, 0x63, 0x79, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x50, 0x65, 0x72,
+	0x6d, 0x69, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19,
+	0x2e, 0x65, 0x6b, 0x75, 0x62, 0x65, 0x2e, 0x72, 0x6f, 0x6c, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x50,
+	0x65, 0x72, 0x6d, 0x69, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x42, 0x1f, 0x5a, 0x1d, 0x65, 0x6b, 0x75,
 	0x62, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x70, 0x62, 0x2f, 0x70, 0x6f, 0x6c, 0x69, 0x63, 0x79,
 	0x2f, 0x76, 0x31, 0x3b, 0x70, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
 	0x6f, 0x33,
 }
 
-var file_pb_policy_v1_rpc_proto_goTypes = []interface{}{}
+var (
+	file_pb_policy_v1_rpc_proto_rawDescOnce sync.Once
+	file_pb_policy_v1_rpc_proto_rawDescData = file_pb_policy_v1_rpc_proto_rawDesc
+)
+
+func file_pb_policy_v1_rpc_proto_rawDescGZIP() []byte {
+	file_pb_policy_v1_rpc_proto_rawDescOnce.Do(func() {
+		file_pb_policy_v1_rpc_proto_rawDescData = protoimpl.X.CompressGZIP(file_pb_policy_v1_rpc_proto_rawDescData)
+	})
+	return file_pb_policy_v1_rpc_proto_rawDescData
+}
+
+var file_pb_policy_v1_rpc_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_pb_policy_v1_rpc_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_pb_policy_v1_rpc_proto_goTypes = []interface{}{
+	(DESCRIBE_BY)(0),               // 0: ekube.policy.v1.DESCRIBE_BY
+	(*ListPolicyRequest)(nil),      // 1: ekube.policy.v1.ListPolicyRequest
+	(*DescribePolicyRequest)(nil),  // 2: ekube.policy.v1.DescribePolicyRequest
+	(*UpdatePolicyRequest)(nil),    // 3: ekube.policy.v1.UpdatePolicyRequest
+	(*DeletePolicyRequest)(nil),    // 4: ekube.policy.v1.DeletePolicyRequest
+	(*page.PageRequest)(nil),       // 5: ekube.page.PageRequest
+	(*CheckPermissionRequest)(nil), // 6: ekube.policy.v1.CheckPermissionRequest
+	(*PolicySet)(nil),              // 7: ekube.policy.v1.PolicySet
+	(*Policy)(nil),                 // 8: ekube.policy.v1.Policy
+	(*v1.Permission)(nil),          // 9: ekube.role.v1.Permission
+}
 var file_pb_policy_v1_rpc_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	5, // 0: ekube.policy.v1.ListPolicyRequest.page:type_name -> ekube.page.PageRequest
+	0, // 1: ekube.policy.v1.DescribePolicyRequest.describe_by:type_name -> ekube.policy.v1.DESCRIBE_BY
+	1, // 2: ekube.policy.v1.RPC.ListPolicy:input_type -> ekube.policy.v1.ListPolicyRequest
+	2, // 3: ekube.policy.v1.RPC.DescribePolicy:input_type -> ekube.policy.v1.DescribePolicyRequest
+	6, // 4: ekube.policy.v1.RPC.CheckPermission:input_type -> ekube.policy.v1.CheckPermissionRequest
+	7, // 5: ekube.policy.v1.RPC.ListPolicy:output_type -> ekube.policy.v1.PolicySet
+	8, // 6: ekube.policy.v1.RPC.DescribePolicy:output_type -> ekube.policy.v1.Policy
+	9, // 7: ekube.policy.v1.RPC.CheckPermission:output_type -> ekube.role.v1.Permission
+	5, // [5:8] is the sub-list for method output_type
+	2, // [2:5] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_pb_policy_v1_rpc_proto_init() }
@@ -44,18 +434,72 @@ func file_pb_policy_v1_rpc_proto_init() {
 	if File_pb_policy_v1_rpc_proto != nil {
 		return
 	}
+	file_pb_policy_v1_policy_proto_init()
+	file_pb_policy_v1_permission_proto_init()
+	if !protoimpl.UnsafeEnabled {
+		file_pb_policy_v1_rpc_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListPolicyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pb_policy_v1_rpc_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DescribePolicyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pb_policy_v1_rpc_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdatePolicyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pb_policy_v1_rpc_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeletePolicyRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_pb_policy_v1_rpc_proto_rawDesc,
-			NumEnums:      0,
-			NumMessages:   0,
+			NumEnums:      1,
+			NumMessages:   4,
 			NumExtensions: 0,
-			NumServices:   0,
+			NumServices:   1,
 		},
 		GoTypes:           file_pb_policy_v1_rpc_proto_goTypes,
 		DependencyIndexes: file_pb_policy_v1_rpc_proto_depIdxs,
+		EnumInfos:         file_pb_policy_v1_rpc_proto_enumTypes,
+		MessageInfos:      file_pb_policy_v1_rpc_proto_msgTypes,
 	}.Build()
 	File_pb_policy_v1_rpc_proto = out.File
 	file_pb_policy_v1_rpc_proto_rawDesc = nil

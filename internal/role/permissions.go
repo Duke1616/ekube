@@ -52,3 +52,13 @@ func NewPermissionSet() *v1.PermissionSet {
 		Items: []*v1.Permission{},
 	}
 }
+
+// NewSkipPermission 如果endpoint不需要鉴权-触发
+func NewSkipPermission(message string) *v1.Permission {
+	return &v1.Permission{
+		Spec: &v1.PermissionSpec{
+			Effect: v1.EffectType_ALLOW,
+			Desc:   message,
+		},
+	}
+}

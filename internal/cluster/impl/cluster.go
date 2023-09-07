@@ -5,6 +5,7 @@ import (
 	clusterv1 "ekube/api/pb/cluster/v1"
 	"ekube/internal/cluster"
 	"ekube/internal/cluster/data"
+	"fmt"
 	"github.com/infraboard/mcube/exception"
 	"github.com/infraboard/mcube/pb/request"
 )
@@ -28,6 +29,7 @@ func (s *service) CreateCluster(ctx context.Context, req *clusterv1.CreateCluste
 	if err != nil {
 		return nil, err
 	}
+	fmt.Print("test")
 
 	if err = s.data.Save(ctx, ins); err != nil {
 		return nil, err

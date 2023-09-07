@@ -121,9 +121,6 @@ func (req *describeRoleRequest) FindOptions() *options.FindOneOptions {
 }
 
 func newListRoleRequest(req *v1.ListRoleRequest) (*listRoleRequest, error) {
-	if err := req.Validate(); err != nil {
-		return nil, err
-	}
 	return &listRoleRequest{
 		ListRoleRequest: req}, nil
 }

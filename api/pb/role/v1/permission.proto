@@ -25,6 +25,9 @@ message Permission {
   // 权限具体定义
   // @gotags: bson:",inline" json:"spec"
   PermissionSpec spec = 4;
+  // 范围限制, 由策略引擎动态补充
+  // @gotags: bson:"-" json:"scope"
+  string scope = 6;
 }
 
 message PermissionSpec {

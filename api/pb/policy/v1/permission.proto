@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package ekube.policy.v1;
+option go_package = "ekube/api/pb/policy/v1;policy";
+
+import "ekube/pb/page/page.proto";
+
+message CheckPermissionRequest {
+  // 分页
+  // @gotags: json:"page"
+  ekube.page.PageRequest page = 1;
+  // 用户名
+  // @gotags: json:"username"
+  string username = 2;
+  // 企业空间
+  // @gotags: json:"workspace"
+  string workspace = 3;
+  // 集群
+  // @gotags: json:"cluster"
+  string cluster = 4;
+  // 项目
+  // @gotags: json:"namespace"
+  string namespace = 5;
+  // 服务Id
+  // @gotags: json:"service_id"
+  string service_id = 6;
+  // 访问路径, 比如HTTP Path
+  // @gotags: json:"path"
+  string path = 7;
+}

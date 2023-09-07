@@ -48,3 +48,5 @@ func NewDefaultRole() *v1.Role {
 		Permissions: []*v1.PermissionSpec{},
 	}
 }
+
+// HasPermission 权限判断

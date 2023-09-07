@@ -18,9 +18,9 @@ func (x *Cluster) IsAlive() error {
 		return fmt.Errorf("status is nil")
 	}
 
-	if !x.Status.IsAlive {
-		return fmt.Errorf(x.Status.Message)
-	}
+	//if !x.Status.IsAlive {
+	//	return fmt.Errorf(x.Status.Message)
+	//}
 
 	return nil
 }

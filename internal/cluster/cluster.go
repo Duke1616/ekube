@@ -1,7 +1,7 @@
 package cluster
 
 import (
-	clusterv1 "ekube/api/pb/cluster/v1"
+	v1 "ekube/api/pb/cluster/v1"
 	"ekube/tools"
 	"github.com/emicklei/go-restful/v3"
 	"github.com/infraboard/mcube/http/request"
@@ -10,43 +10,43 @@ import (
 	pb_request "github.com/infraboard/mcube/pb/request"
 )
 
-func NewCluster(req *clusterv1.CreateClusterRequest) (*clusterv1.Cluster, error) {
+func NewCluster(req *v1.CreateClusterRequest) (*v1.Cluster, error) {
 	if err := req.Validate(); err != nil {
 		return nil, err
 	}
 
-	return &clusterv1.Cluster{
+	return &v1.Cluster{
 		Meta:   tools.NewMeta(),
 		Spec:   req,
-		Info:   &clusterv1.ServerInfo{},
-		Status: &clusterv1.Status{},
+		Info:   &v1.ServerInfo{},
+		Status: &v1.Status{},
 	}, nil
 }
 
-func NewCreateClusterRequest() *clusterv1.CreateClusterRequest {
-	return &clusterv1.CreateClusterRequest{}
+func NewCreateClusterRequest() *v1.CreateClusterRequest {
+	return &v1.CreateClusterRequest{}
 }
 
-func NewDefaultCluster() *clusterv1.Cluster {
-	return &clusterv1.Cluster{
-		Spec: &clusterv1.CreateClusterRequest{},
+func NewDefaultCluster() *v1.Cluster {
+	return &v1.Cluster{
+		Spec: &v1.CreateClusterRequest{},
 	}
 }
 
-func NewDescribeClusterRequest(id string) *clusterv1.DescribeClusterRequest {
-	return &clusterv1.DescribeClusterRequest{
+func NewDescribeClusterRequest(id string) *v1.DescribeClusterRequest {
+	return &v1.DescribeClusterRequest{
 		Id: id,
 	}
 }
 
-func NewDeleteClusterRequestWithID(id string) *clusterv1.DeleteClusterRequest {
-	return &clusterv1.DeleteClusterRequest{
+func NewDeleteClusterRequestWithID(id string) *v1.DeleteClusterRequest {
+	return &v1.DeleteClusterRequest{
 		Id: id,
 	}
 }
 
-func NewPutClusterRequest(id string) *clusterv1.UpdateClusterRequest {
-	return &clusterv1.UpdateClusterRequest{
+func NewPutClusterRequest(id string) *v1.UpdateClusterRequest {
+	return &v1.UpdateClusterRequest{
 		Id:         id,
 		UpdateMode: pb_request.UpdateMode_PUT,
 		UpdateAt:   time.Now().UnixMicro(),
@@ -54,8 +54,8 @@ func NewPutClusterRequest(id string) *clusterv1.UpdateClusterRequest {
 	}
 }
 
-func NewPatchClusterRequest(id string) *clusterv1.UpdateClusterRequest {
-	return &clusterv1.UpdateClusterRequest{
+func NewPatchClusterRequest(id string) *v1.UpdateClusterRequest {
+	return &v1.UpdateClusterRequest{
 		Id:         id,
 		UpdateMode: pb_request.UpdateMode_PATCH,
 		UpdateAt:   time.Now().UnixMicro(),
@@ -63,13 +63,13 @@ func NewPatchClusterRequest(id string) *clusterv1.UpdateClusterRequest {
 	}
 }
 
-func NewClusterSet() *clusterv1.ClusterSet {
-	return &clusterv1.ClusterSet{
-		Items: []*clusterv1.Cluster{},
+func NewClusterSet() *v1.ClusterSet {
+	return &v1.ClusterSet{
+		Items: []*v1.Cluster{},
 	}
 }
 
-func NewListClusterRequestFromHTTP(r *restful.Request) *clusterv1.ListClusterRequest {
+func NewListClusterRequestFromHTTP(r *restful.Request) *v1.ListClusterRequest {
 	req := NewListClusterRequest()
 	req.Page = request.NewPageRequestFromHTTP(r.Request)
 	req.Keywords = r.QueryParameter("keywords")
@@ -78,8 +78,8 @@ func NewListClusterRequestFromHTTP(r *restful.Request) *clusterv1.ListClusterReq
 	return req
 }
 
-func NewListClusterRequest() *clusterv1.ListClusterRequest {
-	return &clusterv1.ListClusterRequest{
+func NewListClusterRequest() *v1.ListClusterRequest {
+	return &v1.ListClusterRequest{
 		Page: request.NewDefaultPageRequest(),
 	}
 }

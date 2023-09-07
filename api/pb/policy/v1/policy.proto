@@ -3,13 +3,14 @@ syntax = "proto3";
 package ekube.policy.v1;
 option go_package = "ekube/api/pb/policy/v1;policy";
 
+import "ekube/pb/meta/meta.proto";
 import "pb/role/v1/role.proto";
 
 // Policy 权限策略
 message Policy {
   // 元信息
   // @gotags: bson:",inline" json:"meta"
-  Meta meta = 1;
+  meta.Meta meta = 1;
   // 策略定义
   // @gotags: bson:",inline" json:"spec"
   CreatePolicyRequest spec = 2;
@@ -24,7 +25,7 @@ message CreatePolicyRequest {
   // @gotags: bson:"create_by" json:"create_by"
   string create_by = 1;
   // 策略所属企业空间
-  // @gotags: bson:"domain" json:"domain"
+  // @gotags: bson:"workspace" json:"workspace"
   string workspace = 2;
   // 所属项目
   // @gotags: bson:"namespace" json:"namespace" validate:"lte=120"
@@ -53,17 +54,12 @@ message CreatePolicyRequest {
 }
 
 
-message Meta {
-  // 唯一ID
-  // @gotags: json:"id" bson:"_id"
-  string id = 1;
-  // 录入时间
-  // @gotags: json:"create_at" bson:"create_at"
-  int64 create_at = 2;
-  // 更新时间
-  // @gotags: json:"update_at" bson:"update_at"
-  int64 update_at = 3;
-  // 更新人
-  // @gotags: json:"update_by" bson:"update_by"
-  string update_by = 4;
+// PolicySet
+message PolicySet {
+  // 分页时，返回总数量
+  // @gotags: json:"total"
+  int64 total = 1;
+  // 一页的数据
+  // @gotags: json:"items"
+  repeated Policy items = 2;
 }

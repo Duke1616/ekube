@@ -24,10 +24,22 @@ message ListWorkspaceRequest {
   string user_id = 2;
 }
 
+
+enum DESCRIBE_BY {
+  // 通过Id
+  ID = 0;
+  // 通过名称
+  NANE = 1;
+}
+
 message DescribeWorkspaceRequest {
-  // 集群Id
+  // 获取详情的方式
+  // @gotags: json:"describe_by"
+  DESCRIBE_BY describe_by = 1;
   // @gotags: json:"id"
-  string id = 1;
+  string id = 2;
+  // @gotags: json:"name,omitempty"
+  string name = 3;
 }
 
 message UpdateWorkspaceRequest {
