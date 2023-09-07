@@ -3,8 +3,8 @@ package api
 import (
 	v1 "ekube/api/pb/namespace/v1"
 	"ekube/internal/namespace"
+	"ekube/utils/response"
 	"github.com/emicklei/go-restful/v3"
-	"github.com/infraboard/mcube/http/restful/response"
 )
 
 func (h *handler) CreateNamespace(r *restful.Request, w *restful.Response) {

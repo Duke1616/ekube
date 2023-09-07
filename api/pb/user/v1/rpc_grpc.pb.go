@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	RPC_QueryUser_FullMethodName    = "/ekube.user.v1.RPC/QueryUser"
+	RPC_ListUser_FullMethodName     = "/ekube.user.v1.RPC/ListUser"
 	RPC_DescribeUser_FullMethodName = "/ekube.user.v1.RPC/DescribeUser"
 )
 
@@ -28,7 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RPCClient interface {
 	// 查询用户列表
-	QueryUser(ctx context.Context, in *ListUserRequest, opts ...grpc.CallOption) (*UserSet, error)
+	ListUser(ctx context.Context, in *ListUserRequest, opts ...grpc.CallOption) (*UserSet, error)
 	// 查询用户详情
 	DescribeUser(ctx context.Context, in *DescribeUserRequest, opts ...grpc.CallOption) (*User, error)
 }
@@ -41,9 +41,9 @@ func NewRPCClient(cc grpc.ClientConnInterface) RPCClient {
 	return &rPCClient{cc}
 }
 
-func (c *rPCClient) QueryUser(ctx context.Context, in *ListUserRequest, opts ...grpc.CallOption) (*UserSet, error) {
+func (c *rPCClient) ListUser(ctx context.Context, in *ListUserRequest, opts ...grpc.CallOption) (*UserSet, error) {
 	out := new(UserSet)
-	err := c.cc.Invoke(ctx, RPC_QueryUser_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, RPC_ListUser_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -64,7 +64,7 @@ func (c *rPCClient) DescribeUser(ctx context.Context, in *DescribeUserRequest, o
 // for forward compatibility
 type RPCServer interface {
 	// 查询用户列表
-	QueryUser(context.Context, *ListUserRequest) (*UserSet, error)
+	ListUser(context.Context, *ListUserRequest) (*UserSet, error)
 	// 查询用户详情
 	DescribeUser(context.Context, *DescribeUserRequest) (*User, error)
 	mustEmbedUnimplementedRPCServer()
@@ -74,8 +74,8 @@ type RPCServer interface {
 type UnimplementedRPCServer struct {
 }
 
-func (UnimplementedRPCServer) QueryUser(context.Context, *ListUserRequest) (*UserSet, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method QueryUser not implemented")
+func (UnimplementedRPCServer) ListUser(context.Context, *ListUserRequest) (*UserSet, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListUser not implemented")
 }
 func (UnimplementedRPCServer) DescribeUser(context.Context, *DescribeUserRequest) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DescribeUser not implemented")
@@ -93,20 +93,20 @@ func RegisterRPCServer(s grpc.ServiceRegistrar, srv RPCServer) {
 	s.RegisterService(&RPC_ServiceDesc, srv)
 }
 
-func _RPC_QueryUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _RPC_ListUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RPCServer).QueryUser(ctx, in)
+		return srv.(RPCServer).ListUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: RPC_QueryUser_FullMethodName,
+		FullMethod: RPC_ListUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RPCServer).QueryUser(ctx, req.(*ListUserRequest))
+		return srv.(RPCServer).ListUser(ctx, req.(*ListUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -137,8 +137,8 @@ var RPC_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*RPCServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "QueryUser",
-			Handler:    _RPC_QueryUser_Handler,
+			MethodName: "ListUser",
+			Handler:    _RPC_ListUser_Handler,
 		},
 		{
 			MethodName: "DescribeUser",

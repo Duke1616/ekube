@@ -2,8 +2,8 @@ package api
 
 import (
 	"ekube/internal/role"
+	"ekube/utils/response"
 	"github.com/emicklei/go-restful/v3"
-	"github.com/infraboard/mcube/http/restful/response"
 )
 
 func (h *handler) CreateRole(r *restful.Request, w *restful.Response) {

@@ -6,9 +6,6 @@ import (
 	"ekube/internal/user"
 	"ekube/tools"
 	"github.com/infraboard/mcube/exception"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
-
 	"github.com/rs/xid"
 )
 
@@ -26,6 +23,7 @@ func (s *service) CreateUser(ctx context.Context, req *v1.CreateUserRequest) (*v
 		Meta:     tools.NewMeta(),
 		Spec:     req,
 		Password: pass,
+		Status:   &v1.Status{},
 	}
 
 	u.Meta.Id = xid.New().String()
@@ -38,8 +36,8 @@ func (s *service) CreateUser(ctx context.Context, req *v1.CreateUserRequest) (*v
 	return u, nil
 }
 
-func (s *service) QueryUser(ctx context.Context, req *v1.ListUserRequest) (*v1.UserSet, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method QueryUser not implemented")
+func (s *service) ListUser(ctx context.Context, req *v1.ListUserRequest) (*v1.UserSet, error) {
+	return s.data.List(ctx, req)
 }
 
 func (s *service) DescribeUser(ctx context.Context, req *v1.DescribeUserRequest) (*v1.User, error) {

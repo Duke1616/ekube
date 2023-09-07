@@ -71,6 +71,9 @@ message User {
   // 密码相关信息
   // @gotags: bson:"password" json:"password"
   Password password = 4;
+  // 用户状态
+  // @gotags: bson:"status" json:"status"
+  Status status = 5;
 }
 
 // CreateUserRequest 创建用户请求
@@ -133,6 +136,22 @@ message Profile {
   // 用户所在的省
   // @gotags: bson:"province" json:"province" validate:"lte=40"
   string province = 10;
+}
+
+// Status 用户状态
+message Status {
+  // 是否冻结
+  // @gotags: bson:"locked" json:"locked"
+  bool locked = 1;
+  // 冻结时间
+  // @gotags: bson:"locked_time" json:"locked_time"
+  int64 locked_time = 2;
+  // 冻结原因
+  // @gotags: bson:"locked_reson" json:"locked_reson"
+  string locked_reson = 3;
+  // 解冻时间
+  // @gotags: bson:"unlock_time" json:"unlock_time"
+  int64 unlock_time = 4;
 }
 
 message UserSet {

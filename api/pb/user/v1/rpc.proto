@@ -9,7 +9,7 @@ import "ekube/pb/page/page.proto";
 // Service 用户服务
 service RPC {
   // 查询用户列表
-  rpc QueryUser(ListUserRequest) returns(UserSet);
+  rpc ListUser(ListUserRequest) returns(UserSet);
   // 查询用户详情
   rpc DescribeUser(DescribeUserRequest) returns(User);
 }
@@ -19,8 +19,8 @@ message ListUserRequest {
   // @gotags: json:"page"
   ekube.page.PageRequest page = 1;
   // 根据用户权限过滤展示
-  // @gotags: json:"user_id"
-  string user_id = 2;
+  // @gotags: json:"user_ids"
+  repeated string user_ids = 2;
 }
 
 

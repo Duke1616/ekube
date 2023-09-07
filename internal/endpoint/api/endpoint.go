@@ -2,9 +2,9 @@ package api
 
 import (
 	"ekube/internal/endpoint"
+	"ekube/utils/response"
 	"github.com/emicklei/go-restful/v3"
 	"github.com/infraboard/mcube/http/request"
-	"github.com/infraboard/mcube/http/restful/response"
 )
 
 // RegistryEndpoint 注册Endpint

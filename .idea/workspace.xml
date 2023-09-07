@@ -5,39 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98931868-6569-4e33-b7fa-dc484e09df39" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/api/pb/token/v1/rpc.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/pb/token/v1/token.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/pb/token/v1/token.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/pb/token/v1/validate.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/pb/user/v1/rpc.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/pb/user/v1/user.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/pb/user/v1/validate.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/token/api/http.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/token/api/token.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/token/data/data.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/token/data/token.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/token/impl/impl.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/token/impl/token.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/token/interface.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/token/provider/all/all.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/token/provider/ldap/issue.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/token/provider/password/issue.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/token/provider/types.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/token/token.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/user/api/http.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/user/api/user.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/user/data/data.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/user/data/user.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/user/impl/impl.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/user/impl/user.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/user/interface.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/internal/user/user.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/pb/user/v1/user.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/response/data.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/response/failed.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/response/success.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/all/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/all/api.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/all/grpc.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/all/grpc.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/all/internal.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/all/internal.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/modules.txt" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/modules.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/pb/user/v1/rpc.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/user/v1/rpc.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/pb/user/v1/rpc.proto" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/user/v1/rpc.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/pb/user/v1/rpc_grpc.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/user/v1/rpc_grpc.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/pb/user/v1/user.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/user/v1/user.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/pb/user/v1/user.proto" beforeDir="false" afterPath="$PROJECT_DIR$/api/pb/user/v1/user.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/cluster/api/cluster.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/cluster/api/cluster.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/endpoint/api/endpoint.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/endpoint/api/endpoint.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/namespace/api/namespace.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/namespace/api/namespace.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/policy/api/policy.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/policy/api/policy.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/proxy/api/pod.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/proxy/api/pod.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/role/api/role.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/role/api/role.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/token/api/token.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/token/api/token.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/user/api/http.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/api/http.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/user/api/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/api/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/user/data/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/data/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/user/impl/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/impl/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/user/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/user/user.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,11 +106,11 @@
       <recent name="$PROJECT_DIR$/pkg/apis" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/utils/response" />
       <recent name="$PROJECT_DIR$/api/pb/user/v1" />
       <recent name="$PROJECT_DIR$/api/pb/token/v1" />
       <recent name="$PROJECT_DIR$/api/pb/policy/v1" />
       <recent name="$PROJECT_DIR$/api/pb/namespace/v1" />
-      <recent name="$PROJECT_DIR$/api/pb/workspace/v1" />
     </key>
   </component>
   <component name="RunManager" selected="Go 构建.go build ekube">
@@ -221,11 +210,6 @@
           <url>file://$PROJECT_DIR$/internal/cluster/api/cluster.go</url>
           <line>28</line>
           <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/internal/token/impl/token.go</url>
-          <line>21</line>
-          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

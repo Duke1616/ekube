@@ -45,6 +45,14 @@ func (h *handler) Registry(ws *restful.WebService) {
 		Metadata(label.Allow, user.TypeToString(v1.TYPE_PRIMARY)).
 		Reads(v1.CreateUserRequest{}).
 		Returns(200, "创建成功", &v1.User{}))
+
+	ws.Route(ws.GET("/").To(h.ListUser).
+		Doc("查询子账号列表").
+		Metadata(restfulspec.KeyOpenAPITags, tags).
+		Metadata(label.Auth, label.Enable).
+		Metadata(label.PERMISSION_MODE, label.PERMISSION_MODE_ACL.Value()).
+		Metadata(label.Allow, user.TypeToString(v1.TYPE_PRIMARY)).
+		Returns(200, "OK", v1.UserSet{}))
 }
 
 func init() {
