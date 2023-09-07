@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package ekube.user.v1;
+option go_package = "ekube/api/pb/user/v1;user";
+
+import "pb/user/v1/user.proto";
+import "ekube/pb/page/page.proto";
+
+// Service 用户服务
+service RPC {
+  // 查询用户列表
+  rpc QueryUser(ListUserRequest) returns(UserSet);
+  // 查询用户详情
+  rpc DescribeUser(DescribeUserRequest) returns(User);
+}
+
+message ListUserRequest {
+  // 分页
+  // @gotags: json:"page"
+  ekube.page.PageRequest page = 1;
+  // 根据用户权限过滤展示
+  // @gotags: json:"user_id"
+  string user_id = 2;
+}
+
+
+enum DESCRIBE_BY {
+  // 通过Id
+  ID = 0;
+  // 通过名称
+  NANE = 1;
+}
+
+message DescribeUserRequest {
+  // 获取详情的方式
+  // @gotags: json:"describe_by"
+  DESCRIBE_BY describe_by = 1;
+  // @gotags: json:"id"
+  string id = 2;
+  // @gotags: json:"username,omitempty"
+  string username = 3;
+}

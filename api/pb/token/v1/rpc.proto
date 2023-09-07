@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package ekube.token.v1;
+option go_package = "ekube/api/pb/token/v1;token";
+
+import "pb/token/v1/token.proto";
+// Token服务
+service RPC {
+  // 校验Token
+  rpc ValidateToken(ValidateTokenRequest) returns (Token);
+}
+
+message ValidateTokenRequest {
+  // 令牌
+  // @gotags: json:"access_token"
+  string access_token = 1;
+}

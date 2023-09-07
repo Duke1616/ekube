@@ -1,0 +1,100 @@
+syntax = "proto3";
+
+package ekube.token.v1;
+option go_package = "ekube/api/pb/token/v1;token";
+import "pb/user/v1/user.proto";
+
+enum GRANT_TYPE {
+  // 用户密码授权
+  PASSWORD = 0;
+  // LDAP授权
+  LDAP = 1;
+}
+
+// 令牌类型
+enum TOKEN_TYPE {
+  // Bearer Token
+  BEARER = 0;
+  // Json Web Token
+  JWT = 1;
+}
+
+enum PLATFORM {
+  // Web 登陆授权
+  WEB = 0;
+  // API 访问授权
+  API = 1;
+}
+
+message Token {
+  // 颁发平台, 根据授权方式判断
+  // @gotags: bson:"platform" json:"platform"
+  PLATFORM platform = 1;
+  // 访问令牌
+  // @gotags: bson:"_id" json:"access_token"
+  string access_token = 2;
+  // 刷新令牌, 当访问令牌过期时, 可以刷新令牌进行刷新
+  // @gotags: bson:"refresh_token" json:"refresh_token"
+  string refresh_token = 3;
+  // 颁发时间
+  // @gotags: bson:"issue_at" json:"issue_at"
+  int64 issue_at = 4;
+  // 访问令牌过期时间, 单位秒
+  // @gotags: bson:"access_expired_at" json:"access_expired_at"
+  int64 access_expired_at = 5;
+  // 刷新令牌过期时间, 单位秒
+  // @gotags: bson:"refresh_expired_at" json:"refresh_expired_at"
+  int64 refresh_expired_at = 6;
+  // 用户类型
+  // @gotags: bson:"user_type" json:"user_type"
+  user.v1.TYPE user_type = 7;
+  // 用户名
+  // @gotags: bson:"username" json:"username"
+  string username = 9;
+  // 用户Id
+  // @gotags: bson:"user_id" json:"user_id"
+  string user_id = 10;
+  // 授权类型
+  // @gotags: bson:"grant_type" json:"grant_type"
+  GRANT_TYPE grant_type = 11;
+  // 令牌类型
+  // @gotags: bson:"type" json:"type"
+  TOKEN_TYPE type = 12;
+  // 令牌描述信息, 当授权类型为Private Token时, 做描述使用
+  // @gotags: bson:"description" json:"description,omitempty"
+  string description = 15;
+  // 其他信息
+  // @gotags: bson:"meta" json:"meta,omitempty"
+  map<string,string> meta = 19;
+}
+
+
+message IssueTokenRequest {
+  // 测试颁发
+  // @gotags: json:"dry_run"
+  bool dry_run = 15;
+  // 授权类型
+  // @gotags: json:"grant_type"
+  GRANT_TYPE grant_type = 1;
+  // 令牌类型
+  // @gotags: json:"type"
+  TOKEN_TYPE type = 2;
+  // 令牌过期时间
+  // @gotags: json:"expired_at"
+  int64 expired_at = 3;
+  // PASSWORD授权时, 用户名
+  // @gotags: json:"username,omitempty"
+  string username = 6;
+  // PASSWORD授权时, 用户密码
+  // @gotags: json:"password,omitempty"
+  string password = 7;
+  // REFRESH授权时, 刷新令牌
+  // @gotags: json:"refresh_token,omitempty"
+  string refresh_token = 8;
+  // PRIVATE_TOKEN授权时, 访问令牌
+  // @gotags: json:"access_token,omitempty"
+  string access_token = 9;
+  // PRIVATE_TOKEN授权时, 描述信息
+  // @gotags: json:"description"
+  string description = 10;
+}

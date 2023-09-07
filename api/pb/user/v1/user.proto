@@ -1,0 +1,145 @@
+syntax = "proto3";
+
+package ekube.user.v1;
+option go_package = "ekube/api/pb/user/v1;user";
+
+import "ekube/pb/meta/meta.proto";
+
+enum Gender {
+  // 保密
+  UNKNOWN = 0;
+  // 男
+  MALE = 1;
+  // 女
+  FEMALE = 2;
+}
+
+enum PROVIDER {
+  // 本地数据库
+  LOCAL = 0;
+  // 来源LDAP
+  LDAP = 1;
+}
+
+// 为了防止越权, 用户可以调整的权限范围只有10已下的权限
+enum TYPE {
+  // 子账号, 无用户中心后台管理权限
+  SUB = 0;
+  // 主账号, 具有本域的所有权限
+  PRIMARY = 10;
+  // 超级管理员, 系统管理员, 万能的人, 不受权限系统约束
+  SUPPER = 15;
+}
+
+message Password {
+  // hash过后的密码
+  // @gotags: bson:"password" json:"password,omitempty"
+  string password = 1;
+  // 密码创建时间
+  // @gotags: bson:"create_at" json:"create_at"
+  int64 create_at = 2;
+  // 密码更新时间
+  // @gotags: bson:"update_at" json:"update_at"
+  int64 update_at = 3;
+  // 密码需要被重置
+  // @gotags: bson:"need_reset" json:"need_reset"
+  bool need_reset = 4;
+  // 需要重置的原因
+  // @gotags: bson:"reset_reason" json:"reset_reason"
+  string reset_reason = 5;
+  // 密码过期时间, 密码过期后要求用户重置密码
+  // @gotags: bson:"expired_days" json:"expired_days"
+  uint32 expired_days = 6;
+  // 密码过期前多少天开始提醒
+  // @gotags: bson:"expired_remind" json:"expired_remind"
+  uint32 expired_remind = 7;
+  // 历史密码
+  // @gotags: bson:"history" json:"history,omitempty"
+  repeated string history = 8;
+}
+
+
+
+// User 用户账号
+message User {
+  // 元信息
+  // @gotags: bson:",inline" json:"meta"
+  meta.Meta meta = 1;
+  // 定义信息
+  // @gotags: bson:",inline" json:"spec"
+  CreateUserRequest spec = 2;
+  // 密码相关信息
+  // @gotags: bson:"password" json:"password"
+  Password password = 4;
+}
+
+// CreateUserRequest 创建用户请求
+message CreateUserRequest {
+  // 账号提供方
+  // @gotags: json:"provider" bson:"provider"
+  PROVIDER provider = 1;
+  // 用户类型
+  // @gotags: json:"type" bson:"type"
+  TYPE type = 2;
+  // 创建类型
+  // @gotags: json:"create_by" bson:"create_by"
+  string create_by = 13;
+  // 用户账号名称
+  // @gotags: json:"username" bson:"username" validate:"required,lte=60"
+  string username = 5;
+  // 密码相关信息
+  // @gotags: json:"password" bson:"-" validate:"required,lte=80"
+  string password = 6;
+  // 用户描述
+  // @gotags: json:"description" bson:"description"
+  string description = 7;
+  // 用户标签, 用于过滤用户
+  // @gotags: json:"labels" bson:"labels"
+  map<string,string> labels = 11;
+  // Profile信息
+  // @gotags bson:"profile" json:"profile"
+  Profile profile = 14;
+}
+
+// Profile 用户详情信息
+message Profile {
+  // 用户真实姓名
+  // @gotags: bson:"real_name" json:"real_name" validate:"lte=10"
+  string real_name = 1;
+  // 用户昵称, 用于在界面进行展示
+  // @gotags: bson:"nick_name" json:"nick_name" validate:"lte=30"
+  string nick_name = 2;
+  // 手机号码, 用户可以通过手机进行注册和密码找回, 还可以通过手机号进行登录
+  // @gotags: bson:"phone" json:"phone" validate:"lte=30"
+  string phone = 3;
+  // 邮箱, 用户可以通过邮箱进行注册和照明密码
+  // @gotags: bson:"email" json:"email" validate:"lte=30"
+  string email = 4;
+  // 用户住址
+  // @gotags: bson:"address" json:"address" validate:"lte=120"
+  string address = 5;
+  // 性别
+  // @gotags: bson:"gender" json:"gender" validate:"lte=10"
+  Gender gender = 6;
+  // 头像
+  // @gotags: bson:"avatar" json:"avatar" validate:"lte=300"
+  string avatar = 7;
+  // 用户使用的语言
+  // @gotags: bson:"language" json:"language" validate:"lte=40"
+  string language = 8;
+  // 用户所在的城市
+  // @gotags: bson:"city" json:"city" validate:"lte=40"
+  string city = 9;
+  // 用户所在的省
+  // @gotags: bson:"province" json:"province" validate:"lte=40"
+  string province = 10;
+}
+
+message UserSet {
+  // 分页时，返回总数量
+  // @gotags: json:"total"
+  int64 total = 1;
+  // 一页的数据
+  // @gotags: json:"items"
+  repeated User items = 2;
+}
